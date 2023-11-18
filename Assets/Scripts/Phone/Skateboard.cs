@@ -14,7 +14,6 @@ public class Skateboard : MonoBehaviour
     void Update()
     {            
         Vector3 translated = new Vector3(-PhoneServer.accelerometerData.y, PhoneServer.accelerometerData.z, PhoneServer.accelerometerData.x);
-        Debug.DrawLine(transform.position, transform.position + translated);
 
         if(PhoneServer.accelerometerRecent)
             transform.rotation = Tilt.tiltRotation;

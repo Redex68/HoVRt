@@ -10,7 +10,7 @@ public class PhoneServer : MonoBehaviour
     [SerializeField] int AccelerometerPort = 42070;
     [SerializeField] float Timeout;
 
-    public static Vector3 accelerometerData;
+    public static Vector3 accelerometerData = Vector3.back;
     public static bool accelerometerRecent;
 
     byte[] ResponseData;
