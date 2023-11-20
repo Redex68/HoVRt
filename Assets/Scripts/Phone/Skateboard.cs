@@ -12,9 +12,7 @@ public class Skateboard : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {            
-        Vector3 translated = new Vector3(-PhoneServer.accelerometerData.y, PhoneServer.accelerometerData.z, PhoneServer.accelerometerData.x);
-
+    {
         if(PhoneServer.accelerometerRecent)
             transform.rotation = Tilt.tiltRotation;
     }

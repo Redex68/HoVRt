@@ -20,12 +20,12 @@ public class Tilt : MonoBehaviour
     private Quaternion turn = Quaternion.identity;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(PhoneServer.accelerometerRecent)
         {
             Vector3 translated = GetTranslated();
-            tiltRotation = Quaternion.FromToRotation(Vector3.down, turn * translated);
+            tiltRotation = Quaternion.Slerp(tiltRotation, Quaternion.FromToRotation(Vector3.down, turn * translated), 0.2f);
         }
     }
 
