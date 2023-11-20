@@ -14,7 +14,7 @@ public class SkeletonTrackingSolution : ImageSourceSolution<PoseTrackingGraph>
     // TODO: actually figure out what we want here. It needs to be thread safe ;_;
     public event Action<LandmarkList> _doSomethingWithLandmarkList;
     
-
+    public ThreadSafeLandmarksVariable tx;
 
     [SerializeField] private PoseWorldLandmarkListAnnotationController _poseWorldLandmarksAnnotationController;
 
@@ -59,6 +59,7 @@ public class SkeletonTrackingSolution : ImageSourceSolution<PoseTrackingGraph>
     void OnWorldLandmarksOutput(object stream, OutputEventArgs<LandmarkList> eventArgs) {
         _doSomethingWithLandmarkList?.Invoke(eventArgs.value);
         //Debug.Log($"Got value {eventArgs.value}");
+        tx.value.Enqueue(eventArgs.value);
     }
 
 }

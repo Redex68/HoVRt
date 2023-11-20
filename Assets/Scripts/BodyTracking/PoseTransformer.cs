@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PoseTransformer : MonoBehaviour
 {
-    [SerializeField] SkeletonTrackingSolution sts; // this sucks
+    [SerializeField] ThreadSafeLandmarksVariable rx; // this sucks
     private Animator animator;
     private Dictionary<LandmarkMap, Transform> mappedLandmarks = new Dictionary<LandmarkMap, Transform>();
 
@@ -31,25 +31,20 @@ public class PoseTransformer : MonoBehaviour
         }
         hip = new GameObject().transform;
         neck = new GameObject().transform;
-        sts._doSomethingWithLandmarkList += UpdateLandmarkMap;
+        
     }
     public void Calibrate()
     {
         // Here we store the values of variables required to do the correct rotations at runtime.
-
         parentCalibrationData.Clear();
 
         // Manually setting calibration data for the spine chain as we want really specific control over that.
         hip.position = (mappedLandmarks[LandmarkMap.LEFT_HIP].position + mappedLandmarks[LandmarkMap.RIGHT_HIP].position) / 2f;
         neck.position = (mappedLandmarks[LandmarkMap.LEFT_SHOULDER].position + mappedLandmarks[LandmarkMap.RIGHT_SHOULDER].position) / 2f;
-        spineUpDown = new CalibrationData(animator.GetBoneTransform(HumanBodyBones.Spine), animator.GetBoneTransform(HumanBodyBones.Neck),
-            hip, neck);
-        hipsTwist = new CalibrationData(animator.GetBoneTransform(HumanBodyBones.Hips), animator.GetBoneTransform(HumanBodyBones.Hips),
-            mappedLandmarks[LandmarkMap.RIGHT_HIP], mappedLandmarks[LandmarkMap.LEFT_HIP]);
-        chest = new CalibrationData(animator.GetBoneTransform(HumanBodyBones.Chest), animator.GetBoneTransform(HumanBodyBones.Chest),
-            mappedLandmarks[LandmarkMap.RIGHT_HIP], mappedLandmarks[LandmarkMap.LEFT_HIP]);
-        head = new CalibrationData(animator.GetBoneTransform(HumanBodyBones.Neck), animator.GetBoneTransform(HumanBodyBones.Head),
-            neck, mappedLandmarks[LandmarkMap.NOSE]);
+        spineUpDown = new CalibrationData(animator.GetBoneTransform(HumanBodyBones.Spine), animator.GetBoneTransform(HumanBodyBones.Neck), hip, neck);
+        hipsTwist = new CalibrationData(animator.GetBoneTransform(HumanBodyBones.Hips), animator.GetBoneTransform(HumanBodyBones.Hips), mappedLandmarks[LandmarkMap.RIGHT_HIP], mappedLandmarks[LandmarkMap.LEFT_HIP]);
+        chest = new CalibrationData(animator.GetBoneTransform(HumanBodyBones.Chest), animator.GetBoneTransform(HumanBodyBones.Chest), mappedLandmarks[LandmarkMap.RIGHT_HIP], mappedLandmarks[LandmarkMap.LEFT_HIP]);
+        head = new CalibrationData(animator.GetBoneTransform(HumanBodyBones.Neck), animator.GetBoneTransform(HumanBodyBones.Head), neck, mappedLandmarks[LandmarkMap.NOSE]);
 
         // Adding calibration data automatically for the rest of the bones.
         AddCalibration(HumanBodyBones.RightUpperArm, HumanBodyBones.RightLowerArm,
@@ -92,15 +87,16 @@ public class PoseTransformer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Calibrate(); // this should not go here
+        if(rx.value.TryDequeue(out var tmp)) {
+            //Debug.Log(tmp);
+            UpdateLandmarkMap(tmp);
+        }
         UpdateRig();
     }
 
     public void UpdateLandmarkMap(LandmarkList landmarks) {
-        if (landmarks == null) {
-            Debug.Log("no landmark");
-            return;
-        }
+        if (landmarks == null) return;
         // this relies heavily on the mediapipe landmarks actually arriving in order 😬
         for(int i = 0; i < landmarks.Landmark.Count; ++i) { // genius naming scheme, LandmarkList.Landmark is ~a List<Landmark>
             Landmark lm = landmarks.Landmark[i];
