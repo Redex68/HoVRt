@@ -477,6 +477,106 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rx: {fileID: 11400000, guid: c8e5eaebf4252d54389f903ce932372a, type: 2}
+  modelJoints:
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
+  - bone: {fileID: 0}
+    jointType: 0
+    parentJointType: 0
 --- !u!1 &368000958
 GameObject:
   m_ObjectHideFlags: 0
