@@ -17,10 +17,17 @@ public class SkeletonTrackingSolution : ImageSourceSolution<PoseTrackingGraph>
     public ThreadSafeLandmarksVariable tx;
 
     [SerializeField] private PoseWorldLandmarkListAnnotationController _poseWorldLandmarksAnnotationController;
+    [SerializeField] private RectTransform _worldAnnotationArea;
 
     protected override void AddTextureFrameToInputStream(TextureFrame textureFrame)
     {
         graphRunner.AddTextureFrameToInputStream(textureFrame);
+    }
+
+    protected override void SetupScreen(ImageSource imageSource)
+    {
+        base.SetupScreen(imageSource);
+        _worldAnnotationArea.localEulerAngles = imageSource.rotation.Reverse().GetEulerAngles();
     }
 
     protected override void OnStartRun()
@@ -57,6 +64,7 @@ public class SkeletonTrackingSolution : ImageSourceSolution<PoseTrackingGraph>
 
 
     void OnWorldLandmarksOutput(object stream, OutputEventArgs<LandmarkList> eventArgs) {
+        _poseWorldLandmarksAnnotationController?.DrawLater(eventArgs.value);
         _doSomethingWithLandmarkList?.Invoke(eventArgs.value);
         //Debug.Log($"Got value {eventArgs.value}");
         tx.value.Enqueue(eventArgs.value);

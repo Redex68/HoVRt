@@ -249,10 +249,20 @@ PrefabInstance:
       objectReference: {fileID: 570545288}
     - target: {fileID: 3569945990084347518, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
         type: 3}
+      propertyPath: _worldAnnotationArea
+      value: 
+      objectReference: {fileID: 1266336640}
+    - target: {fileID: 3569945990084347518, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
+        type: 3}
       propertyPath: onLandmarkListUpdated
       value: 
       objectReference: {fileID: 11400000, guid: 149ede4cb97230b44a03d37597a556ae,
         type: 2}
+    - target: {fileID: 3569945990084347518, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
+        type: 3}
+      propertyPath: _poseWorldLandmarksAnnotationController
+      value: 
+      objectReference: {fileID: 1266336641}
     - target: {fileID: 5213752746541508543, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1590,7 +1600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   annotation: {fileID: 578216870}
   _hipHeightMeter: 0.9
-  _scale: {x: 50, y: 50, z: 50}
+  _scale: {x: 1, y: 1, z: 1}
   _visualizeZ: 1
 --- !u!1 &1287711314
 GameObject:
@@ -1678,13 +1688,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287711314}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.087997176, y: -0, z: -0, w: 0.99612075}
-  m_LocalPosition: {x: 0.15, y: 2.84, z: -5.4}
+  m_LocalRotation: {x: -0.04315875, y: -0, z: -0, w: 0.9990682}
+  m_LocalPosition: {x: 0.01, y: 1.09, z: -1.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 10.097, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.947, y: 0, z: 0}
 --- !u!114 &1287711318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1797,6 +1807,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PoseWorldLandmarks Annotation
       objectReference: {fileID: 0}
+    - target: {fileID: 1915238444563462421, guid: 4418f6a92856c5b51b58a36e3be7ed5c,
+        type: 3}
+      propertyPath: _leftLandmarkColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106715738273262277, guid: 4418f6a92856c5b51b58a36e3be7ed5c,
+        type: 3}
+      propertyPath: _color.a
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106715738273262277, guid: 4418f6a92856c5b51b58a36e3be7ed5c,
+        type: 3}
+      propertyPath: _lineWidth
+      value: 0.024
+      objectReference: {fileID: 0}
     - target: {fileID: 5913343085919651616, guid: 4418f6a92856c5b51b58a36e3be7ed5c,
         type: 3}
       propertyPath: radius
@@ -1805,7 +1830,12 @@ PrefabInstance:
     - target: {fileID: 5913343085919651616, guid: 4418f6a92856c5b51b58a36e3be7ed5c,
         type: 3}
       propertyPath: _radius
-      value: 5
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913343085919651616, guid: 4418f6a92856c5b51b58a36e3be7ed5c,
+        type: 3}
+      propertyPath: _color.a
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5913343085919651616, guid: 4418f6a92856c5b51b58a36e3be7ed5c,
         type: 3}
