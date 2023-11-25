@@ -238,12 +238,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3569945990084347518, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
         type: 3}
-      propertyPath: tx
-      value: 
-      objectReference: {fileID: 11400000, guid: c8e5eaebf4252d54389f903ce932372a,
-        type: 2}
-    - target: {fileID: 3569945990084347518, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
-        type: 3}
       propertyPath: screen
       value: 
       objectReference: {fileID: 570545288}
@@ -252,12 +246,6 @@ PrefabInstance:
       propertyPath: _worldAnnotationArea
       value: 
       objectReference: {fileID: 1266336640}
-    - target: {fileID: 3569945990084347518, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
-        type: 3}
-      propertyPath: onLandmarkListUpdated
-      value: 
-      objectReference: {fileID: 11400000, guid: 149ede4cb97230b44a03d37597a556ae,
-        type: 2}
     - target: {fileID: 3569945990084347518, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
         type: 3}
       propertyPath: _poseWorldLandmarksAnnotationController
@@ -313,6 +301,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5791279544796547311, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
+        type: 3}
+      propertyPath: crouchPercentage
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e9be2c9173fa3f4c81ebb7254491994,
+        type: 2}
     - target: {fileID: 8792805566687266381, guid: 575b2eb94db8deb4d8a5ad88e9c1675d,
         type: 3}
       propertyPath: m_Name
@@ -486,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20be4d4370fa940478e8f132f219eba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rx: {fileID: 11400000, guid: c8e5eaebf4252d54389f903ce932372a, type: 2}
+  mappedLandmarks: {fileID: 11400000, guid: beee6d8a7a7af1b41bbf5ec4f3eea622, type: 2}
   modelJoints:
   - bone: {fileID: 0}
     jointType: 0
@@ -984,7 +978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -101.10501, y: -270}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &570545288
@@ -1013,7 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39607844}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
