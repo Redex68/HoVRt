@@ -6,10 +6,13 @@ using System.Globalization;
 
 public class PhoneServer : MonoBehaviour
 {
+    [Tooltip("The port on which the script will listen for broadcasts on")]
     [SerializeField] int BroadcastPort = 42069;
+    [Tooltip("The port on which the script will listen for accelerometer data")]
     [SerializeField] int AccelerometerPort = 42070;
     [SerializeField] float Timeout;
 
+    //Default value points downwards in the phone's coordinate system
     public static Vector3 accelerometerData = Vector3.back;
     public static bool accelerometerRecent;
 

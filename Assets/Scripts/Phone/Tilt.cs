@@ -13,13 +13,13 @@ public class Tilt : MonoBehaviour
     [SerializeField] public float readDelay {get; private set;} = 1.0f;
     [Tooltip("How long the script will read the data (longer == better average)")]
     [SerializeField] public float readLength {get; private set;} = 2.0f;
+    [Tooltip("The event that will be called when something happens regarding calibration (started, tilt left/right/center, hold, ended)")]
     [SerializeField] GameEvent calibrationEvent;
 
     public static Quaternion tiltRotation = Quaternion.identity;
 
     private Quaternion turn = Quaternion.identity;
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if(PhoneServer.accelerometerRecent)
@@ -34,7 +34,7 @@ public class Tilt : MonoBehaviour
         StartCoroutine(CalibrateCoroutine());
     }
 
-
+/// <summary> Calibrates the phone's tilt, defining new axes around which the phone actualy tilts around <summary>
     private IEnumerator CalibrateCoroutine()
     {
         Debug.Log("Reading left tilt");

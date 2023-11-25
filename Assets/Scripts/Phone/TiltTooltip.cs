@@ -7,7 +7,9 @@ public class TiltTooltip : MonoBehaviour
 {
     [SerializeField] TMPro.TMP_Text displayText;
     [SerializeField] GameObject progressBar;
+    [Tooltip("The colour the progress bar will be during the delay before calibration starts")]
     [SerializeField] Color delayColour;
+    [Tooltip("The colour the progress bar will be while calibrating")]
     [SerializeField] Color readingColour;
 
     private UnityEngine.UI.Image fill;
@@ -57,6 +59,11 @@ public class TiltTooltip : MonoBehaviour
         }
     }
 
+/// <summary> 
+///     Updates the text of the tooltip, the colour of the progress bar and
+///     runs a coroutine that updates the progress of the progress bar
+/// <summary>
+/// <param name="newText"> What the tooltip will display after readDelay seconds pass </param>
     private IEnumerator TooltipUpdater(string newText, float readDelay, float readLength)
     {
         fill.color = delayColour;
@@ -68,6 +75,8 @@ public class TiltTooltip : MonoBehaviour
         StartCoroutine(UpdateProgress(readLength));
     }
 
+/// <summary> Updates the progress bar so that it fills up over the specified timespan </summary>
+/// <param name="time"> How long it will take for the progress bar to fill up </param>
     private IEnumerator UpdateProgress(float time)
     {
         float startTime = Time.time;
