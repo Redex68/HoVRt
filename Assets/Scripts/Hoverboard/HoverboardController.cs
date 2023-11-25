@@ -146,19 +146,26 @@ public class HoverboardController : MonoBehaviour
 
     private void HandleSteering()
     {
-        float steerDir = moveDir.x;
-        currentSteerAngle = maxSteeringAngle * steerDir;
-        foreach (AxleInfo axle in axleInfos)
+        if (PhoneServer.accelerometerRecent)
         {
-            if (axle.turnType == AxleInfo.TurnType.Normal)
+            float steerDir = 0;
+            if (Tilt.tiltRotation.x < -0.05) steerDir = 1;
+            else if (Tilt.tiltRotation.x > 0.05) steerDir = -1;
+            else steerDir = -Tilt.tiltRotation.x / 0.05f;
+
+            currentSteerAngle = maxSteeringAngle * steerDir;
+            foreach (AxleInfo axle in axleInfos)
             {
-                axle.leftWheel.steerAngle = currentSteerAngle;
-                axle.rightWheel.steerAngle = currentSteerAngle;
-            }
-            else if (axle.turnType == AxleInfo.TurnType.Inverted)
-            {
-                axle.leftWheel.steerAngle = -currentSteerAngle;
-                axle.rightWheel.steerAngle = -currentSteerAngle;
+                if (axle.turnType == AxleInfo.TurnType.Normal)
+                {
+                    axle.leftWheel.steerAngle = currentSteerAngle;
+                    axle.rightWheel.steerAngle = currentSteerAngle;
+                }
+                else if (axle.turnType == AxleInfo.TurnType.Inverted)
+                {
+                    axle.leftWheel.steerAngle = -currentSteerAngle;
+                    axle.rightWheel.steerAngle = -currentSteerAngle;
+                }
             }
         }
     }

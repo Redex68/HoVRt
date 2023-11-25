@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5278951014197370408}
   - component: {fileID: 4334815048184594006}
   - component: {fileID: 1684244710502294073}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Right Fan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5734153072297397097}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: FrontRightChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 736036994606107156}
   - component: {fileID: 4367120107078453789}
   - component: {fileID: 5478288697796338357}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Screws
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 6382488272498836401}
   - component: {fileID: 46326408900423047}
   - component: {fileID: 6616368958933777923}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6436831778619009617}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: BackRightChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4965079780344057556}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: FrontLeftChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1698804508975958562}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Wheels (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6110975, y: 0.6110975, z: 0.6110975}
+  m_LocalScale: {x: 0.6110975, y: 0.4130347, z: 0.6110975}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6744449466378752389}
@@ -387,7 +387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9113926896153677095}
   - component: {fileID: 2208348758471467560}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: BackLeftCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 5451428388040538999}
   - component: {fileID: 9075143232994378145}
   - component: {fileID: 4707515248160097843}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Back Fan Holders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,7 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1885372777006417571}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,14 +558,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5027043895809179306}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0.018}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -0, y: 0.18, z: 0}
   m_LocalScale: {x: 0.6110975, y: 0.6110975, z: 0.6110975}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2430017072868252035}
   m_Father: {fileID: 1444437239165828469}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!1 &5062715177972099648
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2987085338072824711}
   - component: {fileID: 4326140090013693910}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: 'FrontRightCollider '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 2636154677364051808}
   - component: {fileID: 9164723714617612015}
   - component: {fileID: 7672227372957816773}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Right Fan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 5034545354726042117}
   - component: {fileID: 2568466379255234054}
   - component: {fileID: 9115813000201456567}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Left Fan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +814,8 @@ GameObject:
   - component: {fileID: 1444437239165828469}
   - component: {fileID: 5135167967293316033}
   - component: {fileID: 7525476982904222233}
-  m_Layer: 0
+  - component: {fileID: 3580614566157842768}
+  m_Layer: 3
   m_Name: Hoverboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -831,7 +832,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.779098, y: 2.779098, z: 2.779098}
+  m_LocalScale: {x: 5.702153, y: 5.702153, z: 5.702153}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1698804508975958562}
@@ -873,7 +874,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5971558708438700016}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23cd3d1c458459643a8d45e5666f1e26, type: 3}
   m_Name: 
@@ -897,13 +898,34 @@ MonoBehaviour:
   playerIndex: 0
   gravRoadLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483648
   notCarLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483703
   motorForce: 16000
   breakForce: 0
-  maxSteeringAngle: 0
+  maxSteeringAngle: 10
+--- !u!65 &3580614566157842768
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5971558708438700016}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.21115163, y: 0.068646565, z: 0.611964}
+  m_Center: {x: -1.4171502e-16, y: 0.070299394, z: 0.0090756565}
 --- !u!1 &6887124577327563540
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,7 +935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9099032709210199962}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: BackLeftChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7011548317789002522}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: RoadCheckers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +1001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6744449466378752389}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: WheelColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,7 +1038,7 @@ GameObject:
   - component: {fileID: 388576153467781507}
   - component: {fileID: 6078243553541838265}
   - component: {fileID: 9013447540989168240}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Left Fan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2753138482564919220}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Center of Mass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1130,7 +1152,7 @@ GameObject:
   - component: {fileID: 8972230451244377787}
   - component: {fileID: 4295252157426633517}
   - component: {fileID: 1901666467055441562}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front Fan Holders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1216,8 +1238,9 @@ GameObject:
   - component: {fileID: 2430017072868252035}
   - component: {fileID: 4477233029207082350}
   - component: {fileID: 1325256239141268489}
-  - component: {fileID: 821539652125131904}
-  m_Layer: 0
+  - component: {fileID: 5827520157433696253}
+  - component: {fileID: 6335123902289723316}
+  m_Layer: 3
   m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1232,15 +1255,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817418261941579746}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.19256774, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 163.52556, y: 160.89601, z: 163.9092}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 736036994606107156}
   - {fileID: 6382488272498836401}
   m_Father: {fileID: 1885372777006417571}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4477233029207082350
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1292,27 +1315,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &821539652125131904
-BoxCollider:
+--- !u!114 &5827520157433696253
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817418261941579746}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77177e3a3d40bd147ae9a177488d728f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6335123902289723316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817418261941579746}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0076630507, y: 0.0020558017, z: 0.0008188947}
-  m_Center: {x: 4.20627e-19, y: -1.1953801e-12, z: -0.000019686482}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660495278ccc8b745bf9bb6d144e1a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9178344763652770384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,7 +1349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5515478587050921366}
   - component: {fileID: 311217183991784753}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: 'BackRightCollider '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1394,7 +1420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8064659924573671736}
   - component: {fileID: 8217866640834317107}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: FrontLeftCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
