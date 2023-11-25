@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
-    path: Assets/MediaPipeUnity/Samples/Scenes/Pose Tracking/Pose Tracking.unity
+    path: Assets/Vendor/MediaPipeUnity/Samples/Scenes/Pose Tracking/Pose Tracking.unity
     guid: a4964d5b8866fb3d8bd4c715728200c8
   m_configObjects: {}
