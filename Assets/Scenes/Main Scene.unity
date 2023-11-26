@@ -123,6 +123,61 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &35234335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5971558708438700016, guid: c73d449421fac2049a40f008ce6b0cd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 449394789}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &35234340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35234335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 590858617
+      Data2: 1203418765
+      Data3: 542711740
+      Data4: 1102196254
+    Path: event:/Engine
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: RPM
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &35234341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35234335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b7e8370deccb54caf73cf4096f643e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRPM: 0
+  maxRPM: 9000
+  speed: 0
+  volume: 0.1
 --- !u!1 &237948925
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +470,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5971558708438700016, guid: c73d449421fac2049a40f008ce6b0cd9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 35234340}
+    - targetCorrespondingSourceObject: {fileID: 5971558708438700016, guid: c73d449421fac2049a40f008ce6b0cd9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 35234341}
   m_SourcePrefab: {fileID: 100100000, guid: c73d449421fac2049a40f008ce6b0cd9, type: 3}
 --- !u!1001 &631503122
 PrefabInstance:

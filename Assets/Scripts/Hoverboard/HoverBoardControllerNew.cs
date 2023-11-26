@@ -9,13 +9,18 @@ public class HoverBoardControllerNew : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float turnSpeed, upForce, maxUpForce, forwardForce;
     [SerializeField] QuaternionVariable tiltRotation;
+    
     public LayerMask notPlayerLayers;
+
+    private PlayerSoundTest sounder;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        sounder = GetComponent<PlayerSoundTest>();
     }
+    
 
     // Update is called once per frame
     void FixedUpdate()
@@ -26,6 +31,9 @@ public class HoverBoardControllerNew : MonoBehaviour
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100, notPlayerLayers))
         {
             rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce);
+            float speed = Mathf.InverseLerp(0, 50, rb.velocity.magnitude);
+            Debug.Log(speed);
+            sounder.speed = speed;
         }
     }
 
