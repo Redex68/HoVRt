@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class Skateboard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] QuaternionVariable tiltRotation;
 
     // Update is called once per frame
     void Update()
     {
         if(PhoneServer.accelerometerRecent)
-            transform.rotation = Tilt.tiltRotation;
+            transform.localRotation = tiltRotation.value;
     }
 }
