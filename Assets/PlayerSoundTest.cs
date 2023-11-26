@@ -26,5 +26,6 @@ public class PlayerSoundTest : MonoBehaviour
         float effectiveRPM = Mathf.Lerp(minRPM, maxRPM, speed);
         var emitter = GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("RPM", effectiveRPM);
+        emitter.EventInstance.setVolume(volume);
     }
 }
