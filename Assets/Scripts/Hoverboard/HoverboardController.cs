@@ -64,7 +64,7 @@ public class HoverboardController : MonoBehaviour
     void OnEnable()
     {
         rigidBody = GetComponent<Rigidbody>();
-        //if (centerOfMass != null) rigidBody.centerOfMass = centerOfMass.position;
+        if (centerOfMass != null) rigidBody.centerOfMass = centerOfMass.position;
 
         stationaryTolerance = 0.001f;
         //playerInput = GetComponent<PlayerInput>();
