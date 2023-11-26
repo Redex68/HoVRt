@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
@@ -18,6 +20,17 @@ public class Checkpoint : MonoBehaviour
         {
             passed = true;
             checkpointPassed.SimpleRaise();
+        }
+        StartCoroutine(Launch());
+    }
+
+    private IEnumerator Launch()
+    {
+        float time = Time.time;
+        while(Time.time - time < 10)
+        {
+            transform.position += transform.up * 100 * Time.deltaTime;
+            yield return new WaitForEndOfFrameUnit();
         }
     }
 }

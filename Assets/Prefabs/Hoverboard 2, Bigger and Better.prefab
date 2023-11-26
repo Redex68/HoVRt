@@ -638,7 +638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1444437239165828469}
   - component: {fileID: 5135167967293316033}
-  - component: {fileID: 7801420602390587389}
+  - component: {fileID: 8308985506609311811}
   - component: {fileID: 975023413721316852}
   m_Layer: 3
   m_Name: Hoverboard 2, Bigger and Better
@@ -675,7 +675,7 @@ Rigidbody:
   m_GameObject: {fileID: 5971558708438700016}
   serializedVersion: 4
   m_Mass: 100
-  m_Drag: 2
+  m_Drag: 1
   m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -693,7 +693,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &7801420602390587389
+--- !u!114 &8308985506609311811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -702,7 +702,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5971558708438700016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81670940be7a05d4a9ee7a2df0676083, type: 3}
+  m_Script: {fileID: 11500000, guid: 3126a3ff70008a743b6e8e291efba16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   forcePoints:
@@ -710,10 +710,11 @@ MonoBehaviour:
   - {fileID: 5734153072297397097}
   - {fileID: 9099032709210199962}
   - {fileID: 6436831778619009617}
-  turnSpeed: 100
+  turnSpeed: 50
   upForce: 500
   maxUpForce: 1000
   forwardForce: 5000
+  tiltRotation: {fileID: 11400000, guid: 84c0ff1549eefe04f96b6167ce33e6ed, type: 2}
   notPlayerLayers:
     serializedVersion: 2
     m_Bits: 2147483703
@@ -724,7 +725,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5971558708438700016}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d0d865777a013ce4e8fb2198ffe5d0f0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77177e3a3d40bd147ae9a177488d728f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiltRotation: {fileID: 0}
 --- !u!114 &6335123902289723316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,6 +1118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660495278ccc8b745bf9bb6d144e1a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiltRotation: {fileID: 11400000, guid: 84c0ff1549eefe04f96b6167ce33e6ed, type: 2}
 --- !u!1 &9199952648803205233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1147,7 @@ Transform:
   m_GameObject: {fileID: 9199952648803205233}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.017, y: 0.785, z: -1.805}
+  m_LocalPosition: {x: -0.017, y: 1.13, z: -2.93}
   m_LocalScale: {x: 0.17537235, y: 0.17537235, z: 0.17537235}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1232,7 +1235,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
