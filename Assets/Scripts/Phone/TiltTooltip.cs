@@ -41,15 +41,15 @@ public class TiltTooltip : MonoBehaviour
             case CalibrationEvent.LEFT:
                 progressBar.SetActive(true);
                 displayText.text = "Tilt left";
-                StartCoroutine(TooltipUpdater("Hold", tilt.readDelay, tilt.readLength));
+                StartCoroutine(TooltipUpdater("Hold", tilt.ReadDelay, tilt.ReadLength));
                 break;
             case CalibrationEvent.RIGHT:
                 displayText.text = "Tilt right";
-                StartCoroutine(TooltipUpdater("Hold", tilt.readDelay, tilt.readLength));
+                StartCoroutine(TooltipUpdater("Hold", tilt.ReadDelay, tilt.ReadLength));
                 break;
             case CalibrationEvent.DOWN:
                 displayText.text = "Lay down flat";
-                StartCoroutine(TooltipUpdater("Hold", tilt.readDelay, tilt.readLength));
+                StartCoroutine(TooltipUpdater("Hold", tilt.ReadDelay, tilt.ReadLength));
                 break;
             case CalibrationEvent.FINISHED:
                 displayText.text = "Calibrated";

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: CrouchPercentage
-  m_EditorClassIdentifier: Assembly-CSharp::FloatVariable
-  defaultValue: 1
+  m_Name: TiltRotation
+  m_EditorClassIdentifier: Assembly-CSharp::QuaternionVariable
+  defaultValue: {x: 0, y: 0, z: 0, w: 0}
   useDefault: 1
-  value: 16.81
+  value: {x: 0, y: 0, z: 0, w: 0}

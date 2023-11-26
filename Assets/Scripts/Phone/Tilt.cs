@@ -10,12 +10,12 @@ public enum CalibrationEvent {LEFT, RIGHT, DOWN, FINISHED}
 public class Tilt : MonoBehaviour
 {
     [Tooltip("How long you have to turn tilt the device in a specific direction before the script starts reading the accelerometer data")]
-    [SerializeField] public float readDelay {get; private set;} = 1.0f;
+    [SerializeField] public float ReadDelay {get; private set;} = 1.0f;
     [Tooltip("How long the script will read the data (longer == better average)")]
-    [SerializeField] public float readLength {get; private set;} = 2.0f;
+    [SerializeField] public float ReadLength {get; private set;} = 2.0f;
     [SerializeField] GameEvent calibrationEvent;
+    [SerializeField] QuaternionVariable tiltRotation;
 
-    public static Quaternion tiltRotation = Quaternion.identity;
 
     private Quaternion turn = Quaternion.identity;
 
@@ -25,7 +25,7 @@ public class Tilt : MonoBehaviour
         if(PhoneServer.accelerometerRecent)
         {
             Vector3 translated = GetTranslated();
-            tiltRotation = Quaternion.Slerp(tiltRotation, Quaternion.FromToRotation(Vector3.down, turn * translated), 0.2f);
+            tiltRotation.value = Quaternion.Slerp(tiltRotation.value, Quaternion.FromToRotation(Vector3.down, turn * translated), 0.2f);
         }
     }
 
@@ -73,10 +73,10 @@ public class Tilt : MonoBehaviour
         __tiltReturn = Vector3.zero;
         Vector3 tilt = Vector3.zero;
 
-        yield return new WaitForSeconds(readDelay);
+        yield return new WaitForSeconds(ReadDelay);
         float start = Time.time;
 
-        while(Time.time - start < readLength)
+        while(Time.time - start < ReadLength)
         {
             tilt += GetTranslated() * Time.deltaTime;
             yield return new WaitForNextFrameUnit();

@@ -202,4 +202,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rx: {fileID: 11400000, guid: c8e5eaebf4252d54389f903ce932372a, type: 2}
   mappedLandmarks: {fileID: 11400000, guid: beee6d8a7a7af1b41bbf5ec4f3eea622, type: 2}
-  chrouchPercentage: {fileID: 11400000, guid: 6e9be2c9173fa3f4c81ebb7254491994, type: 2}
+  crouchPercentage: {fileID: 11400000, guid: 6e9be2c9173fa3f4c81ebb7254491994, type: 2}
