@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{59b92e14-edf8-4aa6-ad5e-1eac2e110402}">
+		<property name="assetPath">
+			<value>Menu/50565__broumbroum__sf3-sfx-menu-validate.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.78947845804988659</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{377a0d95-1f93-4688-a152-e05dd2452ce7}</destination>
+		</relationship>
+	</object>
+</objects>
