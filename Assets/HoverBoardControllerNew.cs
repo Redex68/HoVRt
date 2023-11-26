@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class HoverBoardControllerNew : MonoBehaviour
 {
     [SerializeField] List<Transform> forcePoints;
+    [SerializeField] List<GameObject> fanHolders;
     Rigidbody rb;
-    [SerializeField] float turnSpeed, upForce, maxUpForce, forwardForce;
+    [SerializeField] float turnSpeed, upForce, maxUpForce, forwardForce, fanMinAngle, fanMaxAngle;
     public LayerMask notPlayerLayers;
 
     // Start is called before the first frame update
@@ -21,11 +24,8 @@ public class HoverBoardControllerNew : MonoBehaviour
     {
         HandleSteering();
         Hover();
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100, notPlayerLayers))
-        {
-            rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce);
-        }
+        HandleMotor();
+        HandleFanHolders();
     }
 
     internal void Hover()
@@ -33,16 +33,22 @@ public class HoverBoardControllerNew : MonoBehaviour
         RaycastHit hit;
         foreach (Transform forcePoint in forcePoints)
         {
-            Debug.Log("raycasting");
             if (Physics.Raycast(forcePoint.position, -Vector3.up, out hit, 100, notPlayerLayers))
             {
-                Debug.Log("Hit! Distance is " + hit.distance);
                 float force = upForce / (hit.distance > 0.001f ? hit.distance : 0.001f);
-                Debug.Log("Force: " + force);
                 if (force > maxUpForce) force = maxUpForce;
                 rb.AddForceAtPosition(Vector3.up * force, forcePoint.position);
                 Debug.DrawLine(forcePoint.position, forcePoint.position + Vector3.up*force / 10);
             }
+        }
+    }
+
+    private void HandleMotor()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100, notPlayerLayers))
+        {
+            rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce);
         }
     }
 
@@ -57,6 +63,16 @@ public class HoverBoardControllerNew : MonoBehaviour
             rb.AddTorque(Vector3.up * turnSpeed * steerDir);
             //transform.localRotation = new Quaternion(transform.localRotation.x, transform.localRotation.y + 0.6f * steerDir * Time.deltaTime, transform.localRotation.z, transform.localRotation.w);
             //rb.AddTorque(rb.transform.up * turnForce * steerDir);
+        }
+    }
+
+    private void HandleFanHolders()
+    {
+        float angle = Mathf.Lerp(fanMinAngle, fanMaxAngle, Mathf.InverseLerp(0, 50, Vector3.Project(rb.velocity, transform.forward).magnitude));
+        foreach (GameObject fanHolder in fanHolders)
+        {
+            fanHolder.transform.localRotation = new Quaternion(0, 0, 0, 0);
+            fanHolder.transform.Rotate(Vector3.up * angle);
         }
     }
 }
