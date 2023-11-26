@@ -279,7 +279,7 @@ Transform:
   m_GameObject: {fileID: 807760136}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.835144, y: 5.088472, z: 47.33922}
+  m_LocalPosition: {x: -46.835144, y: -2.3, z: 47.33922}
   m_LocalScale: {x: 23.121632, y: 23.121632, z: 23.121632}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -600,37 +600,37 @@ PrefabInstance:
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.682846
+      value: 63.49
       objectReference: {fileID: 0}
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.92
+      value: -0.95
       objectReference: {fileID: 0}
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 48.79852
+      value: 46.54
       objectReference: {fileID: 0}
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.6689707
       objectReference: {fileID: 0}
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.74328876
       objectReference: {fileID: 0}
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
@@ -640,7 +640,7 @@ PrefabInstance:
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -96.025
       objectReference: {fileID: 0}
     - target: {fileID: 1444437239165828469, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
@@ -650,37 +650,17 @@ PrefabInstance:
     - target: {fileID: 5135167967293316033, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_Drag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5135167967293316033, guid: c73d449421fac2049a40f008ce6b0cd9,
-        type: 3}
-      propertyPath: m_Mass
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5971558708438700016, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: m_Name
       value: Hoverboard 2, Bigger and Better
       objectReference: {fileID: 0}
-    - target: {fileID: 7011548317789002522, guid: c73d449421fac2049a40f008ce6b0cd9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.92669153
-      objectReference: {fileID: 0}
-    - target: {fileID: 7011548317789002522, guid: c73d449421fac2049a40f008ce6b0cd9,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.45536447
-      objectReference: {fileID: 0}
     - target: {fileID: 7801420602390587389, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
-      propertyPath: upForce
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7801420602390587389, guid: c73d449421fac2049a40f008ce6b0cd9,
-        type: 3}
-      propertyPath: maxUpForce
-      value: 100
+      propertyPath: turnSpeed
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
