@@ -14,6 +14,6 @@ public class Skateboard : MonoBehaviour
     void Update()
     {
         if(PhoneServer.accelerometerRecent)
-            transform.rotation = Tilt.tiltRotation;
+            transform.localRotation = Tilt.tiltRotation;
     }
 }
