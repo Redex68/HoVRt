@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: CrouchPercentage
-  m_EditorClassIdentifier: Assembly-CSharp::FloatVariable
-  defaultValue: 1
+  m_Script: {fileID: 11500000, guid: 2efa76f967b825f40beb4422f6e9afd8, type: 3}
+  m_Name: TiltRotationCooler
+  m_EditorClassIdentifier: 
+  defaultValue: {x: 0, y: 0, z: 0, w: 0}
   useDefault: 1
-  value: 16.81
+  value: {x: 0, y: 0, z: 0, w: 0}

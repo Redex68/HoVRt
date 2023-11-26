@@ -1323,6 +1323,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4096104904492731581, guid: 878f6720fdf60ff499a0f1873ac8cf96,
+        type: 3}
+      propertyPath: tiltRotation
+      value: 
+      objectReference: {fileID: 11400000, guid: 98f66f640671d004cb29422d140c3fd6,
+        type: 2}
     - target: {fileID: 6026281413222615172, guid: 878f6720fdf60ff499a0f1873ac8cf96,
         type: 3}
       propertyPath: m_Name

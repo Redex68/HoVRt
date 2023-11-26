@@ -714,7 +714,7 @@ MonoBehaviour:
   upForce: 500
   maxUpForce: 1000
   forwardForce: 5000
-  tiltRotation: {fileID: 11400000, guid: 84c0ff1549eefe04f96b6167ce33e6ed, type: 2}
+  tiltRotation: {fileID: 11400000, guid: 98f66f640671d004cb29422d140c3fd6, type: 2}
   notPlayerLayers:
     serializedVersion: 2
     m_Bits: 2147483703
@@ -1016,7 +1016,6 @@ GameObject:
   - component: {fileID: 2430017072868252035}
   - component: {fileID: 4477233029207082350}
   - component: {fileID: 1325256239141268489}
-  - component: {fileID: 5827520157433696253}
   - component: {fileID: 6335123902289723316}
   m_Layer: 3
   m_Name: Board
@@ -1093,19 +1092,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5827520157433696253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817418261941579746}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77177e3a3d40bd147ae9a177488d728f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiltRotation: {fileID: 0}
 --- !u!114 &6335123902289723316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,7 +1104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660495278ccc8b745bf9bb6d144e1a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiltRotation: {fileID: 11400000, guid: 84c0ff1549eefe04f96b6167ce33e6ed, type: 2}
+  tiltRotation: {fileID: 11400000, guid: 98f66f640671d004cb29422d140c3fd6, type: 2}
 --- !u!1 &9199952648803205233
 GameObject:
   m_ObjectHideFlags: 0
