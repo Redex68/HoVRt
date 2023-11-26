@@ -40,6 +40,7 @@ public class HoverboardController : MonoBehaviour
     [NonSerialized] public bool respawned = false, respawn2D;
     [NonSerialized] public CheckPoint lastCheckPoint = null;
     [SerializeField] internal Transform[] roadCheckers;
+    [SerializeField] internal QuaternionVariable tiltRotation;
     //CineMachine3DController camController;
     private float currentBreakForce;
     private float currentSteerAngle;
@@ -149,9 +150,9 @@ public class HoverboardController : MonoBehaviour
         if (PhoneServer.accelerometerRecent)
         {
             float steerDir = 0;
-            if (Tilt.tiltRotation.x < -0.05) steerDir = 1;
-            else if (Tilt.tiltRotation.x > 0.05) steerDir = -1;
-            else steerDir = -Tilt.tiltRotation.x / 0.05f;
+            if (tiltRotation.value.x < -0.05) steerDir = 1;
+            else if (tiltRotation.value.x > 0.05) steerDir = -1;
+            else steerDir = -tiltRotation.value.x / 0.05f;
 
             currentSteerAngle = maxSteeringAngle * steerDir;
             foreach (AxleInfo axle in axleInfos)

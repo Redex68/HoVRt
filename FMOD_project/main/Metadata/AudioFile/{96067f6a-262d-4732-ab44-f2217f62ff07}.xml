@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{96067f6a-262d-4732-ab44-f2217f62ff07}">
+		<property name="assetPath">
+			<value>Vehicles/Hoverboard/hoverboard-MID.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>4.8346875000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{377a0d95-1f93-4688-a152-e05dd2452ce7}</destination>
+		</relationship>
+	</object>
+</objects>
