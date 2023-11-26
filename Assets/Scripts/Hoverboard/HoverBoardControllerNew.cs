@@ -7,7 +7,7 @@ public class HoverBoardControllerNew : MonoBehaviour
 {
     [SerializeField] List<Transform> forcePoints;
     Rigidbody rb;
-    [SerializeField] float turnSpeed, upForce, maxUpForce;
+    [SerializeField] float turnSpeed, upForce, maxUpForce, forwardForce;
     [SerializeField] QuaternionVariable tiltRotation;
     public LayerMask notPlayerLayers;
 
@@ -22,7 +22,11 @@ public class HoverBoardControllerNew : MonoBehaviour
     {
         HandleSteering();
         Hover();
-        //transform.position += transform.forward * 1;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100, notPlayerLayers))
+        {
+            rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce);
+        }
     }
 
     internal void Hover()
@@ -38,7 +42,7 @@ public class HoverBoardControllerNew : MonoBehaviour
                 Debug.Log("Force: " + force);
                 if (force > maxUpForce) force = maxUpForce;
                 rb.AddForceAtPosition(Vector3.up * force, forcePoint.position);
-                Debug.DrawLine(forcePoint.position, forcePoint.position + Vector3.up*force);
+                Debug.DrawLine(forcePoint.position, forcePoint.position + Vector3.up*force / 10);
             }
         }
     }

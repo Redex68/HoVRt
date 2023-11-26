@@ -639,7 +639,6 @@ GameObject:
   - component: {fileID: 1444437239165828469}
   - component: {fileID: 5135167967293316033}
   - component: {fileID: 7801420602390587389}
-  - component: {fileID: 2008925588718495809}
   - component: {fileID: 975023413721316852}
   m_Layer: 3
   m_Name: Hoverboard 2, Bigger and Better
@@ -663,8 +662,8 @@ Transform:
   m_Children:
   - {fileID: 1885372777006417571}
   - {fileID: 2753138482564919220}
-  - {fileID: 7011548317789002522}
   - {fileID: 7882131909752402449}
+  - {fileID: 7011548317789002522}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5135167967293316033
@@ -675,9 +674,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5971558708438700016}
   serializedVersion: 4
-  m_Mass: 10000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 100
+  m_Drag: 2
+  m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -692,7 +691,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 48
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &7801420602390587389
 MonoBehaviour:
@@ -712,32 +711,12 @@ MonoBehaviour:
   - {fileID: 9099032709210199962}
   - {fileID: 6436831778619009617}
   turnSpeed: 100
-  upForce: 10000
-  maxUpForce: 1000000
+  upForce: 500
+  maxUpForce: 1000
+  forwardForce: 5000
   notPlayerLayers:
     serializedVersion: 2
     m_Bits: 2147483703
---- !u!135 &2008925588718495809
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5971558708438700016}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.2810674
-  m_Center: {x: 0, y: 0.2189326, z: 0}
 --- !u!65 &975023413721316852
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -757,8 +736,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.26, y: 0.08, z: 0.53}
-  m_Center: {x: 0, y: 0.21, z: 0}
+  m_Size: {x: 0.26, y: 0.07861619, z: 0.6968278}
+  m_Center: {x: 0, y: 0.2106919, z: 0}
 --- !u!1 &6887124577327563540
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,8 +794,8 @@ Transform:
   m_GameObject: {fileID: 7078382147208470563}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.194, z: 0}
-  m_LocalScale: {x: 0.6110975, y: 0.4130347, z: 0.6110975}
+  m_LocalPosition: {x: 0, y: 0.19400002, z: 0}
+  m_LocalScale: {x: 0.92669153, y: 0.41303465, z: 0.45536447}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4965079780344057556}

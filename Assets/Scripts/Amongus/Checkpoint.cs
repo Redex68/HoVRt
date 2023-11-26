@@ -14,7 +14,10 @@ public class Checkpoint : MonoBehaviour
 
     void OnTriggerEnter()
     {
-        passed = true;
-        checkpointPassed.SimpleRaise();
+        if(!passed)
+        {
+            passed = true;
+            checkpointPassed.SimpleRaise();
+        }
     }
 }
