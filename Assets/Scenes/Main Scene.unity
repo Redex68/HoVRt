@@ -212,6 +212,8 @@ MonoBehaviour:
   thingsThatExplodeMe:
     serializedVersion: 2
     m_Bits: 55
+  cam: {fileID: 413091205}
+  gameOver: {fileID: 11400000, guid: e907e8d4e1303cb469298694a839f8f0, type: 2}
 --- !u!1 &237948925
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +440,12 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!1 &413091205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9199952648803205233, guid: c73d449421fac2049a40f008ce6b0cd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 449394789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &449394789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1594,6 +1602,8 @@ GameObject:
   - component: {fileID: 1691586075}
   - component: {fileID: 1691586074}
   - component: {fileID: 1691586073}
+  - component: {fileID: 1691586077}
+  - component: {fileID: 1691586076}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1651,6 +1661,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1691586076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691586072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9898f340950b86c4ba33d00d01b5c8a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: e907e8d4e1303cb469298694a839f8f0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1691586077}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+        m_MethodName: DelayedLoad
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1691586077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691586072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8451335a3b10042a6db96f9e3c2553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1751957167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1782,6 +1832,12 @@ PrefabInstance:
       propertyPath: tiltRotation
       value: 
       objectReference: {fileID: 11400000, guid: 98f66f640671d004cb29422d140c3fd6,
+        type: 2}
+    - target: {fileID: 4096104904492731581, guid: 878f6720fdf60ff499a0f1873ac8cf96,
+        type: 3}
+      propertyPath: calibratedTurn
+      value: 
+      objectReference: {fileID: 11400000, guid: 6436a7a06713ff54b87078807b66c513,
         type: 2}
     - target: {fileID: 6026281413222615172, guid: 878f6720fdf60ff499a0f1873ac8cf96,
         type: 3}
