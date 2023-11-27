@@ -13,19 +13,24 @@ public class PlayerSoundTest : MonoBehaviour
 
     [Range(0.0f, 10.0f)]
     public float volume = 0.1f;
-
+    
+    private FMODUnity.StudioEventEmitter emitter;
 
     void Awake()
     {
-        var emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.EventInstance.setVolume(volume);
     }
 
     void Update()
     {
         float effectiveRPM = Mathf.Lerp(minRPM, maxRPM, speed);
-        var emitter = GetComponent<FMODUnity.StudioEventEmitter>();
         emitter.SetParameter("RPM", effectiveRPM);
         emitter.EventInstance.setVolume(volume);
+    }
+
+    void OnDisable()
+    {
+        emitter.EventInstance.setVolume(0);
     }
 }
