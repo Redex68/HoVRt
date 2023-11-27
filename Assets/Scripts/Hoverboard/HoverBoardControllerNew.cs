@@ -55,7 +55,7 @@ public class HoverBoardControllerNew : MonoBehaviour
         {
             rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce);
 			float speed = Mathf.InverseLerp(0, 50, rb.velocity.magnitude);
-            Debug.Log(speed);
+            //Debug.Log(speed);
             sounder.speed = speed;
         }
     }
