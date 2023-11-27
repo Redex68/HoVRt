@@ -547,12 +547,17 @@ PrefabInstance:
     - target: {fileID: 8308985506609311811, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: topSpeed
-      value: 40
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8308985506609311811, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
       propertyPath: maxUpForce
-      value: 500
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308985506609311811, guid: c73d449421fac2049a40f008ce6b0cd9,
+        type: 3}
+      propertyPath: minDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8308985506609311811, guid: c73d449421fac2049a40f008ce6b0cd9,
         type: 3}
