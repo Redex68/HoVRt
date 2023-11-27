@@ -9,8 +9,6 @@ public class FanRotator : MonoBehaviour
 
     void Update()
     {
-        Quaternion rot = transform.localRotation;
-        rot.z += speed;
-        transform.localRotation = rot;
+        transform.Rotate(Vector3.forward, speed * Time.deltaTime);
     }
 }
