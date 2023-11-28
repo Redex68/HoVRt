@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5278951014197370408}
   - component: {fileID: 4334815048184594006}
   - component: {fileID: 1684244710502294073}
+  - component: {fileID: 7765460799081474150}
   m_Layer: 3
   m_Name: Right Fan
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7765460799081474150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290869496200981473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9adea7869587750448e2db94f24ccb66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 500
 --- !u!1 &349696904497926857
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +487,7 @@ GameObject:
   - component: {fileID: 2636154677364051808}
   - component: {fileID: 9164723714617612015}
   - component: {fileID: 7672227372957816773}
+  - component: {fileID: 1766797011752894771}
   m_Layer: 3
   m_Name: Right Fan
   m_TagString: Untagged
@@ -545,6 +560,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1766797011752894771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5223987402356894042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9adea7869587750448e2db94f24ccb66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 500
 --- !u!1 &5459286111174631835
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +584,7 @@ GameObject:
   - component: {fileID: 5034545354726042117}
   - component: {fileID: 2568466379255234054}
   - component: {fileID: 9115813000201456567}
+  - component: {fileID: 3053997918069399737}
   m_Layer: 3
   m_Name: Left Fan
   m_TagString: Untagged
@@ -628,6 +657,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3053997918069399737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5459286111174631835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9adea7869587750448e2db94f24ccb66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 500
 --- !u!1 &5971558708438700016
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,10 +752,15 @@ MonoBehaviour:
   - {fileID: 5734153072297397097}
   - {fileID: 9099032709210199962}
   - {fileID: 6436831778619009617}
+  fanHolders:
+  - {fileID: 4956846781763652356}
+  - {fileID: 8684998868634340470}
   turnSpeed: 50
   upForce: 500
   maxUpForce: 1000
   forwardForce: 5000
+  fanMinAngle: 0
+  fanMaxAngle: 30
   tiltRotation: {fileID: 11400000, guid: 98f66f640671d004cb29422d140c3fd6, type: 2}
   notPlayerLayers:
     serializedVersion: 2
@@ -816,6 +863,7 @@ GameObject:
   - component: {fileID: 388576153467781507}
   - component: {fileID: 6078243553541838265}
   - component: {fileID: 9013447540989168240}
+  - component: {fileID: 6256594159891340214}
   m_Layer: 3
   m_Name: Left Fan
   m_TagString: Untagged
@@ -888,6 +936,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6256594159891340214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8001235864022027023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9adea7869587750448e2db94f24ccb66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 500
 --- !u!1 &8525097252209005263
 GameObject:
   m_ObjectHideFlags: 0
