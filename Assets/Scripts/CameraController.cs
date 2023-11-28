@@ -7,6 +7,13 @@ public class CameraController : MonoBehaviour
     public float speed = 5.0f;
     public float sensitivity = 5.0f;
 
+    void Start()
+    {
+        // Lock and Hide the Cursor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Update()
     {
         // Move the camera forward, backward, left, and right
@@ -14,8 +21,10 @@ public class CameraController : MonoBehaviour
         transform.position += transform.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
         // Rotate the camera based on the mouse movement
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-        transform.eulerAngles += new Vector3(-mouseY * sensitivity, mouseX * sensitivity, 0);
+        Vector2 mouseDelta = sensitivity * new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
+        Quaternion rotation = transform.rotation;
+        Quaternion horiz = Quaternion.AngleAxis(mouseDelta.x, Vector3.up);
+        Quaternion vert = Quaternion.AngleAxis(mouseDelta.y, Vector3.right);
+        transform.rotation = horiz * rotation * vert;
     }
 }
