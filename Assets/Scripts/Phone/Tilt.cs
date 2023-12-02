@@ -15,9 +15,7 @@ public class Tilt : MonoBehaviour
     [SerializeField] public float ReadLength {get; private set;} = 2.0f;
     [SerializeField] GameEvent calibrationEvent;
     [SerializeField] QuaternionVariable tiltRotation;
-
-
-    private Quaternion turn = Quaternion.identity;
+    [SerializeField] QuaternionVariable calibratedTurn;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -25,7 +23,7 @@ public class Tilt : MonoBehaviour
         if(PhoneServer.accelerometerRecent)
         {
             Vector3 translated = GetTranslated();
-            tiltRotation.value = Quaternion.Slerp(tiltRotation.value, Quaternion.FromToRotation(Vector3.down, turn * translated), 0.2f);
+            tiltRotation.value = Quaternion.Slerp(tiltRotation.value, Quaternion.FromToRotation(Vector3.down, calibratedTurn.value * translated), 0.2f);
         }
     }
 
@@ -59,9 +57,9 @@ public class Tilt : MonoBehaviour
         Vector3 forward = Vector3.Cross(right, left);
         down = Vector3.ProjectOnPlane(down, forward);
 
-        turn = Quaternion.FromToRotation(forward, Vector3.right);
-        down = turn * down;
-        turn = Quaternion.FromToRotation(down, Vector3.down) * turn;
+        calibratedTurn.value = Quaternion.FromToRotation(forward, Vector3.right);
+        down = calibratedTurn.value * down;
+        calibratedTurn.value = Quaternion.FromToRotation(down, Vector3.down) * calibratedTurn.value;
         calibrationEvent.Raise(this, CalibrationEvent.FINISHED);
         Debug.Log("Calibrated");
     }

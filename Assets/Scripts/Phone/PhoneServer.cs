@@ -16,6 +16,9 @@ public class PhoneServer : MonoBehaviour
     byte[] ResponseData;
     float accelerometerLastRead = 0;
 
+    private static UdpClient BroadcastServer;
+    private static UdpClient Server;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +37,7 @@ public class PhoneServer : MonoBehaviour
 
     async void ReceiveBroadcast()
     {
-        UdpClient BroadcastServer = new(new IPEndPoint(IPAddress.Any, BroadcastPort));
+        BroadcastServer ??= new(new IPEndPoint(IPAddress.Any, BroadcastPort));
         while(true)
         {
             Debug.Log("Awaiting.");
@@ -51,7 +54,7 @@ public class PhoneServer : MonoBehaviour
 
     async void AccelerometerListen()
     {
-        UdpClient Server = new(new IPEndPoint(IPAddress.Any, AccelerometerPort));
+        Server ??= new(new IPEndPoint(IPAddress.Any, AccelerometerPort));
         while(true)
         {
             UdpReceiveResult response = await Server.ReceiveAsync();
