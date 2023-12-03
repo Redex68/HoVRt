@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = 50.0f;
     public float sensitivity = 5.0f;
 
     void Start()
@@ -12,10 +12,13 @@ public class CameraController : MonoBehaviour
         // Lock and Hide the Cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        QualitySettings.softParticles = true;
+        GetComponent<Camera>().depthTextureMode = DepthTextureMode.Depth;
     }
 
     void Update()
     {
+        Debug.Log(GetComponent<Camera>().depthTextureMode);
         // Move the camera forward, backward, left, and right
         transform.position += transform.forward * Input.GetAxis("Vertical") * speed * Time.deltaTime;
         transform.position += transform.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime;
