@@ -5,7 +5,6 @@ Shader "Custom/InteriorMapping"
     Properties
     { 
         _CubeMap ("Room cubemap", Cube) =  "white" {}
-        [Toggle(_RANDOMIZE)] _RANDOMIZE ("Randomize", Integer) = 0
     }
 
     // The SubShader block containing the Shader code. 
@@ -24,7 +23,6 @@ Shader "Custom/InteriorMapping"
             #pragma vertex vert
             // This line defines the name of the fragment shader. 
             #pragma fragment frag
-            #pragma shader_feature _RANDOMIZE
 
             // The Core.hlsl file contains definitions of frequently used HLSL
             // macros and functions, and also contains #include references to other
@@ -49,8 +47,8 @@ Shader "Custom/InteriorMapping"
             {
                 // The positions in this struct must have the SV_POSITION semantic.
                 float4 positionHCS  : SV_POSITION; 
-                float3 uvw          : TEXCOORD0;
-                float3 viewDirWS    : TEXCOORD1;
+                float2 uv           : TEXCOORD0;
+                float3 viewDirTS    : TEXCOORD1;
             };            
 
 
@@ -66,37 +64,37 @@ Shader "Custom/InteriorMapping"
                 Varyings OUT;
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
                 // taken from Emil Persson's Cubemap based interior mapping (https://forum.unity.com/threads/interior-mapping.424676/)
-                OUT.uvw = IN.positionOS * _CubeMap_ST.xyx * 0.9999 + _CubeMap_ST.zwz - 0.001;
+                OUT.uv = TRANSFORM_TEX(IN.uvOS, _CubeMap);
                 float4 objCam = mul(unity_WorldToObject, float4(_WorldSpaceCameraPos, 1.0));
-                OUT.viewDirWS = IN.positionOS.xyz - objCam.xyz;
-                OUT.viewDirWS *= _CubeMap_ST.xyx;
+                float3 viewDir = IN.positionOS.xyz - objCam.xyz;
+                float tangentSign = IN.tangentOS.w * unity_WorldTransformParams.w;
+                float3 bitangent = cross(IN.normalOS.xyz, IN.tangentOS.xyz) * tangentSign;
+                OUT.viewDirTS = float3(
+                    dot(viewDir, IN.tangentOS.xyz),
+                    dot(viewDir, bitangent),
+                    dot(viewDir, IN.normalOS.xyz)
+                );
+                // adjust for tiling
+                OUT.viewDirTS *= _CubeMap_ST.xyx;
                 // Returning the output.
                 return OUT;
             }
 
-            float3 rand3(float co) {
-                return frac(sin(co * float3(12.9898,78.233,43.2316)) * 43758.5453);
-            }
             
+
             // The fragment shader definition.            
             half4 frag(Varyings IN) : SV_Target
             {
-
-                float3 roomUVW = frac(IN.uvw);
-                // project 
-                float3 pos = roomUVW * 2.0 - 1.0;
-                float3 invDir = 1.0 / IN.viewDirWS;
+       
+                float2 roomUV = frac(IN.uv);
+                float3 pos = float3(roomUV * 2.0 - 1.0, 1);
+                //return half4(pos, 1.0);
+                float3 invDir = 1.0 / IN.viewDirTS;
                 float3 k = abs(invDir) - pos * invDir;
                 float kMin = min(min(k.x, k.y), k.z);
-                pos += kMin * IN.viewDirWS;
-            #ifdef _RANDOMIZE
-                float3 flooredUV = floor(IN.uvw);
-                float3 r = rand3(flooredUV.x + flooredUV.y + flooredUV.z);
-                float2 cubeflip = floor(r.xy * 2.0) * 2.0 - 1.0;
-                pos.xz *= cubeflip;
-                pos.xz = r.z > 0.5 ? pos.xz : pos.zx;
-            #endif
-                half4 room = texCUBE(_CubeMap, pos.xyz);
+                pos += kMin * IN.viewDirTS;
+
+                half4 room = texCUBE(_CubeMap, pos);
                 return half4(room.rgb, 1.0);
             }
             ENDHLSL
