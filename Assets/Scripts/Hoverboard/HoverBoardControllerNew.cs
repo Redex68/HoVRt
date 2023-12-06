@@ -54,7 +54,6 @@ public class HoverBoardControllerNew : MonoBehaviour
                 else
                     distance = Mathf.InverseLerp(minDistance, targetDistance, hit.distance);
                 float force = rb.mass * Physics.gravity.magnitude / 4 / (distance > 0.001f ? distance : 0.001f);
-                Debug.Log($"{forcePoint.name} : {force}");
                 if (force > maxUpForce) force = maxUpForce;
                 rb.AddForceAtPosition(Vector3.up * force, forcePoint.position);
             }
