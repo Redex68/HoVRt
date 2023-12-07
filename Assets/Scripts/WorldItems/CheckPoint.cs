@@ -12,7 +12,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            HoverboardController carController = other.GetComponent<HoverboardController>();
+            CarController carController = other.GetComponent<CarController>();
             if (activePlayers.Contains(carController.playerIndex)) return;
 
             activePlayers.Append(carController.playerIndex);

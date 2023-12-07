@@ -4,18 +4,20 @@ using UnityEngine;
 using System;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class HoverBoardControllerNew : MonoBehaviour
 {
     [SerializeField] List<Transform> forcePoints;
     [SerializeField] List<GameObject> fanHolders;
     Rigidbody rb;
-    [SerializeField] float turnSpeed, maxUpForce, forwardForce, fanMinAngle, fanMaxAngle;
+    [SerializeField] float turnSpeed, maxUpForce, forwardForce, speedModeMaxUpForce, speedModeForwardForce, fanMinAngle, fanMaxAngle;
     [SerializeField] QuaternionVariable tiltRotation;
-    [SerializeField] float topSpeed = 50.0f;
+    [SerializeField] float topSpeed = 100f;
     [SerializeField] float minDistance = 0.5f;
     [SerializeField] float targetDistance = 3.0f;
     [SerializeField] float maxDistance = 6.0f;
+    bool jumpHeld, accelerate, brake, speedMode;
     public LayerMask notPlayerLayers;
 
     private PlayerSoundTest sounder;
@@ -27,7 +29,7 @@ public class HoverBoardControllerNew : MonoBehaviour
         sounder = GetComponent<PlayerSoundTest>();
         rb.maxLinearVelocity = topSpeed;
     }
-    
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -49,12 +51,12 @@ public class HoverBoardControllerNew : MonoBehaviour
             if (Physics.Raycast(forcePoint.position, -Vector3.up, out hit, 100, notPlayerLayers))
             {
                 float distance;
-                if(hit.distance > targetDistance)
+                if (hit.distance > targetDistance)
                     distance = 1 / (1 - Mathf.InverseLerp(targetDistance, maxDistance, hit.distance));
                 else
                     distance = Mathf.InverseLerp(minDistance, targetDistance, hit.distance);
-                float force = rb.mass * Physics.gravity.magnitude / 4 / (distance > 0.001f ? distance : 0.001f);
-                Debug.Log($"{forcePoint.name} : {force}");
+                float force = rb.mass * Physics.gravity.magnitude * (speedMode ? 1f : 1/4f) / Math.Max(distance, 0.001f);
+                //Debug.Log($"{forcePoint.name} : {force}");
                 if (force > maxUpForce) force = maxUpForce;
                 rb.AddForceAtPosition(Vector3.up * force, forcePoint.position);
             }
@@ -66,7 +68,10 @@ public class HoverBoardControllerNew : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100, notPlayerLayers))
         {
-            rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce);
+            Vector3 targetDirection = hit.distance < 3f ? hit.normal : Vector3.up;
+            if (speedMode) rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * speedModeForwardForce);
+            else if (accelerate) rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce);
+            else if (brake) rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce * -1);
             sounder.speed = Mathf.InverseLerp(0, topSpeed, rb.velocity.magnitude);
         }
     }
@@ -92,6 +97,43 @@ public class HoverBoardControllerNew : MonoBehaviour
         {
             fanHolder.transform.localRotation = new Quaternion(0, 0, 0, 0);
             fanHolder.transform.Rotate(Vector3.up * angle);
+        }
+    }
+
+    public void JumpButton(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started) jumpHeld = true;
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            rb.AddForce(Vector3.up * 100000);
+            jumpHeld = true;
+        }
+    }
+
+    public void AccelerateButton(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started) accelerate = true;
+        if (context.phase == InputActionPhase.Canceled) accelerate = false;
+    }
+
+    public void BrakeButton(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started) brake = true;
+        if (context.phase == InputActionPhase.Canceled) brake = false;
+    }
+
+    public void SpeedUpButton(InputAction.CallbackContext context)
+    {
+        Debug.Log("HighSpeedTime");
+        if (context.phase == InputActionPhase.Started)
+        {
+            rb.maxLinearVelocity = 5000;
+            speedMode = true;
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            rb.maxLinearVelocity = topSpeed;
+            speedMode = false;
         }
     }
 }
