@@ -9,7 +9,7 @@ public class DeathMaterialScript : MonoBehaviour
         Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<HoverboardController>().Kill();
+            other.GetComponent<CarController>().Kill();
         }
     }
 }

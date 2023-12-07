@@ -5,18 +5,20 @@ using System;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public class HoverBoardControllerNew : MonoBehaviour
 {
     [SerializeField] List<Transform> forcePoints;
     [SerializeField] List<GameObject> fanHolders;
     Rigidbody rb;
-    [SerializeField] float turnSpeed, maxUpForce, forwardForce, fanMinAngle, fanMaxAngle;
+    [SerializeField] float turnSpeed, maxUpForce, forwardForce, speedModeMaxUpForce, speedModeForwardForce, fanMinAngle, fanMaxAngle;
     [SerializeField] QuaternionVariable tiltRotation;
-    [SerializeField] float topSpeed = 50.0f;
+    [SerializeField] float topSpeed = 100f;
     [SerializeField] float minDistance = 0.5f;
     [SerializeField] float targetDistance = 3.0f;
     [SerializeField] float maxDistance = 6.0f;
+    bool jumpHeld, accelerate, brake, speedMode;
     public LayerMask notPlayerLayers;
 
     private PlayerSoundTest sounder;
@@ -27,7 +29,7 @@ public class HoverBoardControllerNew : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         sounder = GetComponent<PlayerSoundTest>();
     }
-    
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -128,8 +130,11 @@ public class HoverBoardControllerNew : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100, notPlayerLayers))
         {
-            float coef = Mathf.Max(1 - Mathf.InverseLerp(topSpeed * 0.8f, topSpeed, rb.velocity.magnitude), 0.2f);
-            rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce * coef);
+            Vector3 projectionNormal = hit.distance < 3f ? hit.normal : Vector3.up;
+            Vector3 targetDirection = Vector3.ProjectOnPlane(transform.forward, projectionNormal);
+            if (speedMode) rb.AddForce(targetDirection * speedModeForwardForce);
+            else if (accelerate) rb.AddForce(targetDirection * forwardForce);
+            else if (brake) rb.AddForce(targetDirection * forwardForce * -1);
             sounder.speed = Mathf.InverseLerp(0, topSpeed, rb.velocity.magnitude);
         }
     }
@@ -174,6 +179,43 @@ public class HoverBoardControllerNew : MonoBehaviour
             {
                 values[i] += modifiers[i] / normFactor * step;
             }
+        }
+    }
+
+    public void JumpButton(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started) jumpHeld = true;
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            rb.AddForce(Vector3.up * 100000);
+            jumpHeld = true;
+        }
+    }
+
+    public void AccelerateButton(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started) accelerate = true;
+        if (context.phase == InputActionPhase.Canceled) accelerate = false;
+    }
+
+    public void BrakeButton(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started) brake = true;
+        if (context.phase == InputActionPhase.Canceled) brake = false;
+    }
+
+    public void SpeedUpButton(InputAction.CallbackContext context)
+    {
+        Debug.Log("HighSpeedTime");
+        if (context.phase == InputActionPhase.Started)
+        {
+            rb.maxLinearVelocity = 5000;
+            speedMode = true;
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            rb.maxLinearVelocity = topSpeed;
+            speedMode = false;
         }
     }
 }
