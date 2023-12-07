@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class HoverBoardControllerNew : MonoBehaviour
 {
@@ -25,7 +26,6 @@ public class HoverBoardControllerNew : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         sounder = GetComponent<PlayerSoundTest>();
-        rb.maxLinearVelocity = topSpeed;
     }
     
 
@@ -40,22 +40,85 @@ public class HoverBoardControllerNew : MonoBehaviour
 
     internal void Hover()
     {
-        RaycastHit hit;
         //if(Physics.Raycast(transform.position, Vector3.down, out hit, 100, notPlayerLayers))
         //    if(hit.distance > 4.0f && transform.eulerAngles.x < 15 || transform.eulerAngles.x > 300)
         //        transform.Rotate(Vector3.right, Time.deltaTime * 15);
-        foreach (Transform forcePoint in forcePoints)
+        RaycastHit[] hits = new RaycastHit[4];
+        float minHeight = forcePoints[0].position.y;
+        float maxHeight = forcePoints[0].position.y;
+        float[] modifiers = {0f, 0f, 0f, 0f};
+        for(int i = 0; i < forcePoints.Count; i++)
         {
-            if (Physics.Raycast(forcePoint.position, -Vector3.up, out hit, 100, notPlayerLayers))
+            Transform forcePoint = forcePoints[i];
+            if (!Physics.Raycast(forcePoint.position + Vector3.up, Vector3.down, out hits[i], 100, notPlayerLayers))
             {
-                float distance;
-                if(hit.distance > targetDistance)
-                    distance = 1 / (1 - Mathf.InverseLerp(targetDistance, maxDistance, hit.distance));
+                hits[i].distance = -1f;
+            }
+            hits[i].distance -= 1f;
+            if(minHeight > forcePoint.position.y) minHeight = forcePoint.position.y;
+            else if(maxHeight < forcePoint.position.y) maxHeight = forcePoint.position.y;
+        }
+
+        for(int i = 0; i < forcePoints.Count; i++)
+        {
+            modifiers[i] = -(Mathf.InverseLerp(minHeight, maxHeight, forcePoints[i].position.y) - 0.5f) * 2 / Mathf.Lerp(40, 100, 1 - Mathf.InverseLerp(0, 90, Vector3.Angle(Vector3.up, transform.up)));
+        }
+        
+        //Check if we're too close to the ground
+        if(hits.Any((hit) => 
+        {
+            float downSpeed = Vector3.Dot(-hit.normal, rb.velocity);
+            return hit.distance < minDistance && downSpeed > 0.5;
+        }))
+        {
+            //If we're too close, take the closest force point and push the hover board away in the direction of the ground's normal at that point.
+            float distance = hits[0].distance;
+            float distanceSum = 0.0f;
+            Vector3 normal = hits[0].normal;
+            float[] modifiers2 = new float[hits.Length];
+            for(int i = 0; i < hits.Length; i++)
+            {
+                if(distance > hits[i].distance)
+                {
+                    distance = hits[i].distance;
+                    normal = hits[i].normal;
+                }
+                modifiers2[i] = 1.0f / hits[i].distance;
+                distanceSum += modifiers2[i];
+            }
+            distanceSum /= modifiers2.Length;
+
+            
+            float downSpeed = Vector3.Dot(-normal, rb.velocity) / Mathf.Lerp(4, 24, Mathf.InverseLerp(minDistance * 0.25f, minDistance, distance));
+
+            Normalize(ref modifiers2, 0.015f, 0.005f);
+
+            for(int i = 0; i < forcePoints.Count; i++)
+            {
+                rb.AddForceAtPosition(normal * downSpeed * modifiers2[i], forcePoints[i].position, ForceMode.VelocityChange);
+            }
+        }
+        else
+        {
+            float[] forces = new float[hits.Length];
+            for(int i = 0; i < forcePoints.Count; i++)
+            {
+                float modifier;
+                if(hits[i].distance > maxDistance)
+                {
+                    modifier = modifiers[i];
+                }
+                else if(hits[i].distance == -2f) continue;
+                else if(hits[i].distance > targetDistance)
+                    modifier = 1 - Mathf.InverseLerp(targetDistance, maxDistance, hits[i].distance);
                 else
-                    distance = Mathf.InverseLerp(minDistance, targetDistance, hit.distance);
-                float force = rb.mass * Physics.gravity.magnitude / 4 / (distance > 0.001f ? distance : 0.001f);
-                if (force > maxUpForce) force = maxUpForce;
-                rb.AddForceAtPosition(Vector3.up * force, forcePoint.position);
+                    modifier = Mathf.Lerp(1, maxUpForce / rb.mass / Physics.gravity.magnitude, 1 - Mathf.InverseLerp(minDistance, targetDistance, hits[i].distance));
+                forces[i] = rb.mass * Physics.gravity.magnitude / 4 * modifier;
+            }
+            Normalize(ref forces, 15f, 5f);
+            for(int i = 0; i < forcePoints.Count; i++)
+            {
+                rb.AddForceAtPosition(transform.up * forces[i], forcePoints[i].position);
             }
         }
     }
@@ -65,7 +128,8 @@ public class HoverBoardControllerNew : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100, notPlayerLayers))
         {
-            rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce);
+            float coef = Mathf.Max(1 - Mathf.InverseLerp(topSpeed * 0.8f, topSpeed, rb.velocity.magnitude), 0.2f);
+            rb.AddForce(Vector3.ProjectOnPlane(transform.forward, hit.normal) * forwardForce * coef);
             sounder.speed = Mathf.InverseLerp(0, topSpeed, rb.velocity.magnitude);
         }
     }
@@ -91,6 +155,25 @@ public class HoverBoardControllerNew : MonoBehaviour
         {
             fanHolder.transform.localRotation = new Quaternion(0, 0, 0, 0);
             fanHolder.transform.Rotate(Vector3.up * angle);
+        }
+    }
+
+    private void Normalize(ref float[] values, float maxDelta, float step)
+    {
+        float average = values.Average();
+        
+        for(int j = 0; j < 2000 && (Mathf.Max(values) - Mathf.Min(values) > maxDelta); j++)
+        {
+            float[] modifiers = new float[values.Length];
+            for(int i = 0; i < values.Length; i++)
+                modifiers[i] = average - values[i];
+            
+            float normFactor = Mathf.Max(Mathf.Abs(Mathf.Min(modifiers)), Mathf.Max(modifiers));
+
+            for(int i = 0; i < values.Length; i++)
+            {
+                values[i] += modifiers[i] / normFactor * step;
+            }
         }
     }
 }

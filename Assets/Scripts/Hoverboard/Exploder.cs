@@ -6,12 +6,15 @@ public class Exploder : MonoBehaviour
 {
     [SerializeField] GameObject explosion;
     [SerializeField] LayerMask thingsThatExplodeMe;
+    [SerializeField] LayerMask ground;
     [SerializeField] GameObject cam;
     [SerializeField] GameEvent gameOver;
 
     void OnCollisionEnter(Collision collision)
     {
-         if((thingsThatExplodeMe.value & (1 << collision.gameObject.layer)) != 0)
+        if((thingsThatExplodeMe.value & (1 << collision.gameObject.layer)) != 0)
+            Explode();
+        else if(((ground.value & (1 << collision.gameObject.layer)) != 0) && Vector3.Dot(transform.up, Vector3.up) < 0)
             Explode();
     }
 
