@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Scene.unity
     guid: cce7c7ee0200ccf4e9a33e58f574b6f4
+  - enabled: 1
+    path: Assets/Scenes/Beacon scene.unity
+    guid: 82e6be8158e7c044c8d5708dd43bd1a8
   m_configObjects: {}
