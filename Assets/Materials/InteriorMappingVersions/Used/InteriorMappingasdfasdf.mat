@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InteriorMapping
+  m_Name: InteriorMappingasdfasdf
   m_Shader: {fileID: 4800000, guid: 460b9536171e87c4f89e4ce748c8a141, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -46,7 +46,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _CubeMap:
         m_Texture: {fileID: 8900000, guid: 3a16fe54df8db2949bfde0f6f53ecfd6, type: 3}
-        m_Scale: {x: 7, y: 4}
+        m_Scale: {x: 5, y: 3}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
