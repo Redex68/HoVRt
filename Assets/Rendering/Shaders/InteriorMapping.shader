@@ -58,6 +58,7 @@ Shader "Custom/InteriorMapping"
                 float2 uv           : TEXCOORD0;
                 float3 viewDirTS    : TEXCOORD1;
                 half3 normalWS      : TEXCOORD2;
+                half4 tangentWS     : TEXCOORD3;
                 // TODO: positionWS, tangentWS, vertexLighting, shadowCoord, dynamicLightmapUV, DECLARE_LIGHTMAP_OR_SH
                 // see packages/com.unity.render-pipelines.universal/Shaders/LitGBufferPass.hlsl
             };            
@@ -92,6 +93,8 @@ Shader "Custom/InteriorMapping"
                 );
                 // adjust for tiling
                 OUT.viewDirTS *= _CubeMap_ST.xyx;
+                // send the tangent
+                OUT.tangentWS = half4(normalInput.tangentWS.xyz, tangentSign);
                 // Returning the output.
                 return OUT;
             }
@@ -150,16 +153,36 @@ Shader "Custom/InteriorMapping"
                 float3 k = abs(invDir) - pos * invDir;
                 float kMin = min(min(k.x, k.y), k.z);
                 pos += kMin * IN.viewDirTS;
-
                 half4 room = texCUBE(_CubeMap, pos);
+                
+                // return half4(pos, 1.0);
+                // pos = abs(pos);
+                // bool3 mask = pos.xyz >= max(pos.yzx, pos.zxy);
+                // return half4(mask * sign(IN.viewDirTS), 1.0);
                 return half4(room.rgb, 1.0);
+            }
+            float3 interiorMapNormal(Varyings IN) {
+                float2 roomUV = frac(IN.uv);
+                float3 pos = float3(roomUV * 2.0 - 1.0, 1);
+                //return half4(pos, 1.0);
+                float3 invDir = 1.0 / IN.viewDirTS;
+                float3 k = abs(invDir) - pos * invDir;
+                float kMin = min(min(k.x, k.y), k.z);
+                pos += kMin * IN.viewDirTS;
+                pos = abs(pos);
+                bool3 mask = pos.xyz >= max(pos.yzx, pos.zxy);
+                float3 normalTS = mask * sign(IN.viewDirTS);
+                float3 bitangent = IN.tangentWS.w * cross(IN.normalWS.xyz, IN.tangentWS.xyz);
+                float3 normalWS = TransformTangentToWorld(normalTS, half3x3(IN.tangentWS.xyz, bitangent.xyz, IN.normalWS.xyz));
+                return normalWS;
             }
             FragmentOutput deferredFrag(Varyings IN) {
                 SurfaceData surfaceData;
                 InitializeStandardLitSurfaceData(IN.uv, surfaceData); // may need uvs mapped to flat? maybe?
                 surfaceData.albedo = interiorMap(IN);
                 InputData inputData;
-                InitializeInputData(IN, surfaceData.normalTS, inputData); // TODO: write this function
+                InitializeInputData(IN, surfaceData.normalTS, inputData); 
+                inputData.normalWS = interiorMapNormal(IN);
 
                 BRDFData brdfData;
                 InitializeBRDFData(surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.alpha, brdfData);
@@ -168,7 +191,7 @@ Shader "Custom/InteriorMapping"
                 MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, inputData.shadowMask);
                 half3 color = GlobalIllumination(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.positionWS, inputData.normalWS, inputData.viewDirectionWS);
                 FragmentOutput output = BRDFDataToGbuffer(brdfData, inputData, surfaceData.smoothness, surfaceData.emission + color, surfaceData.occlusion);
-                //output.GBuffer0 = interiorMap(IN);
+
                 return output;
             }
             // TODO: Shadows, depth and normals
@@ -179,186 +202,7 @@ Shader "Custom/InteriorMapping"
             }
             ENDHLSL
         }
-        Pass
-        {
-            Name "ShadowCaster"
-            Tags
-            {
-                "LightMode" = "ShadowCaster"
-            }
-
-            // -------------------------------------
-            // Render State Commands
-            ZWrite On
-            ZTest LEqual
-            ColorMask 0
-            Cull[_Cull]
-
-            HLSLPROGRAM
-            #pragma target 2.0
-
-            // -------------------------------------
-            // Shader Stages
-            #pragma vertex ShadowPassVertex
-            #pragma fragment ShadowPassFragment
-
-            // -------------------------------------
-            // Material Keywords
-            #pragma shader_feature_local_fragment _ALPHATEST_ON
-            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-
-            //--------------------------------------
-            // GPU Instancing
-            #pragma multi_compile_instancing
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-
-            // -------------------------------------
-            // Universal Pipeline keywords
-
-            // -------------------------------------
-            // Unity defined keywords
-            #pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
-
-            // This is used during shadow map generation to differentiate between directional and punctual light shadows, as they use different formulas to apply Normal Bias
-            #pragma multi_compile_vertex _ _CASTING_PUNCTUAL_LIGHT_SHADOW
-
-            // -------------------------------------
-            // Includes
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
-            ENDHLSL
-        }
-        Pass
-        {
-            Name "DepthOnly"
-            Tags
-            {
-                "LightMode" = "DepthOnly"
-            }
-
-            // -------------------------------------
-            // Render State Commands
-            ZWrite On
-            ColorMask R
-            Cull[_Cull]
-
-            HLSLPROGRAM
-            #pragma target 2.0
-
-            // -------------------------------------
-            // Shader Stages
-            #pragma vertex DepthOnlyVertex
-            #pragma fragment DepthOnlyFragment
-
-            // -------------------------------------
-            // Material Keywords
-            #pragma shader_feature_local_fragment _ALPHATEST_ON
-            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-
-            // -------------------------------------
-            // Unity defined keywords
-            #pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
-
-            //--------------------------------------
-            // GPU Instancing
-            #pragma multi_compile_instancing
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-
-            // -------------------------------------
-            // Includes
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
-            ENDHLSL
-        }
-
-        // This pass is used when drawing to a _CameraNormalsTexture texture
-        Pass
-        {
-            Name "DepthNormals"
-            Tags
-            {
-                "LightMode" = "DepthNormals"
-            }
-
-            // -------------------------------------
-            // Render State Commands
-            ZWrite On
-            Cull[_Cull]
-
-            HLSLPROGRAM
-            #pragma target 2.0
-
-            // -------------------------------------
-            // Shader Stages
-            #pragma vertex DepthNormalsVertex
-            #pragma fragment DepthNormalsFragment
-
-            // -------------------------------------
-            // Material Keywords
-            #pragma shader_feature_local _NORMALMAP
-            #pragma shader_feature_local _PARALLAXMAP
-            #pragma shader_feature_local _ _DETAIL_MULX2 _DETAIL_SCALED
-            #pragma shader_feature_local_fragment _ALPHATEST_ON
-            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-
-            // -------------------------------------
-            // Unity defined keywords
-            #pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
-
-            // -------------------------------------
-            // Universal Pipeline keywords
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
-
-            //--------------------------------------
-            // GPU Instancing
-            #pragma multi_compile_instancing
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-
-            // -------------------------------------
-            // Includes
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitDepthNormalsPass.hlsl"
-            ENDHLSL
-        }
-
-        // This pass it not used during regular rendering, only for lightmap baking.
-        Pass
-        {
-            Name "Meta"
-            Tags
-            {
-                "LightMode" = "Meta"
-            }
-
-            // -------------------------------------
-            // Render State Commands
-            Cull Off
-
-            HLSLPROGRAM
-            #pragma target 2.0
-
-            // -------------------------------------
-            // Shader Stages
-            #pragma vertex UniversalVertexMeta
-            #pragma fragment UniversalFragmentMetaLit
-
-            // -------------------------------------
-            // Material Keywords
-            #pragma shader_feature_local_fragment _SPECULAR_SETUP
-            #pragma shader_feature_local_fragment _EMISSION
-            #pragma shader_feature_local_fragment _METALLICSPECGLOSSMAP
-            #pragma shader_feature_local_fragment _ALPHATEST_ON
-            #pragma shader_feature_local_fragment _ _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-            #pragma shader_feature_local _ _DETAIL_MULX2 _DETAIL_SCALED
-            #pragma shader_feature_local_fragment _SPECGLOSSMAP
-            #pragma shader_feature EDITOR_VISUALIZATION
-
-            // -------------------------------------
-            // Includes
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitMetaPass.hlsl"
-
-            ENDHLSL
-        }
+        
+        
     }
 }
