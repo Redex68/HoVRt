@@ -16,7 +16,8 @@ public class EscapeMenu : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            escapeMenu.SetActive(!opened);
+            opened = !opened;
+            escapeMenu.SetActive(opened);
         }
     }
 }

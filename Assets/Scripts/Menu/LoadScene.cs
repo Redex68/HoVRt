@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    [SerializeField] string SceneName = "MainScene";
+    [SerializeField] StringVariable SceneName;
     public void LoadDaScene()
     {
-        SceneManager.LoadSceneAsync(SceneName);
+        SceneManager.LoadSceneAsync(SceneName.value);
     }
 }
