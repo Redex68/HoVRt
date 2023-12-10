@@ -28,6 +28,51 @@ Shader "Custom/InteriorMapping"
             // This line defines the name of the fragment shader. 
             // #pragma fragment frag
             #pragma fragment deferredFrag
+            // -------------------------------------
+            // Material Keywords
+            #pragma shader_feature_local _NORMALMAP
+            #pragma shader_feature_local_fragment _ALPHATEST_ON
+            //#pragma shader_feature_local_fragment _ALPHAPREMULTIPLY_ON
+            #pragma shader_feature_local_fragment _EMISSION
+            #pragma shader_feature_local_fragment _METALLICSPECGLOSSMAP
+            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+            #pragma shader_feature_local_fragment _OCCLUSIONMAP
+            #pragma shader_feature_local _PARALLAXMAP
+            #pragma shader_feature_local _ _DETAIL_MULX2 _DETAIL_SCALED
+
+            #pragma shader_feature_local_fragment _SPECULARHIGHLIGHTS_OFF
+            #pragma shader_feature_local_fragment _ENVIRONMENTREFLECTIONS_OFF
+            #pragma shader_feature_local_fragment _SPECULAR_SETUP
+            #pragma shader_feature_local _RECEIVE_SHADOWS_OFF
+
+            // -------------------------------------
+            // Universal Pipeline keywords
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
+            //#pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            //#pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT
+            #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
+            #pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
+
+            // -------------------------------------
+            // Unity defined keywords
+            #pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
+            #pragma multi_compile _ SHADOWS_SHADOWMASK
+            #pragma multi_compile _ DIRLIGHTMAP_COMBINED
+            #pragma multi_compile _ LIGHTMAP_ON
+            #pragma multi_compile _ DYNAMICLIGHTMAP_ON
+            #pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
+            #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
+
+            //--------------------------------------
+            // GPU Instancing
+            #pragma multi_compile_instancing
+            #pragma instancing_options renderinglayer
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
+
 
             // The Core.hlsl file contains definitions of frequently used HLSL
             // macros and functions, and also contains #include references to other
@@ -48,7 +93,8 @@ Shader "Custom/InteriorMapping"
                 float2 texcoord     : TEXCOORD0;
                 float3 normalOS     : NORMAL;
                 float4 tangentOS    : TANGENT;
-                // TODO: staticLightmapUV, dynamicLightmapUV
+                float2 staticLightmapUV   : TEXCOORD1;
+                float2 dynamicLightmapUV  : TEXCOORD2;
             };
 
             struct Varyings
@@ -59,7 +105,12 @@ Shader "Custom/InteriorMapping"
                 float3 viewDirTS    : TEXCOORD1;
                 half3 normalWS      : TEXCOORD2;
                 half4 tangentWS     : TEXCOORD3;
-                // TODO: positionWS, tangentWS, vertexLighting, shadowCoord, dynamicLightmapUV, DECLARE_LIGHTMAP_OR_SH
+                float3 positionWS   : TEXCOORD4;
+                half3 vertexLighting: TEXCOORD5;
+                float4 shadowCoord  : TEXCOORD6;
+                DECLARE_LIGHTMAP_OR_SH(staticLightmapUV, vertexSH, 7);
+                float2 dynamicLightmapUV: TEXCOORD8;
+                // TODO: positionWS, vertexLighting, shadowCoord, dynamicLightmapUV, DECLARE_LIGHTMAP_OR_SH
                 // see packages/com.unity.render-pipelines.universal/Shaders/LitGBufferPass.hlsl
             };            
 
@@ -101,12 +152,10 @@ Shader "Custom/InteriorMapping"
 
             void InitializeInputData(Varyings IN, half3 normalTS, out InputData inputData) {
                 inputData = (InputData)0;
-                // #if defined(REQUIRES_WORLD_SPACE_POS_INTERPOLATOR)
-                //     inputData.positionWS = input.positionWS;
-                // #endif
+                    inputData.positionWS = IN.positionWS;
 
                 inputData.positionCS = IN.positionCS;
-                // half3 viewDirWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
+                half3 viewDirWS = GetWorldSpaceNormalizeViewDir(IN.positionWS);
                 // #if defined(_NORMALMAP) || defined(_DETAIL)
                 //     float sgn = input.tangentWS.w;      // should be either +1 or -1
                 //     float3 bitangent = sgn * cross(input.normalWS.xyz, input.tangentWS.xyz);
@@ -116,32 +165,32 @@ Shader "Custom/InteriorMapping"
                 // #endif
 
                 inputData.normalWS = NormalizeNormalPerPixel(inputData.normalWS);
-                // inputData.viewDirectionWS = viewDirWS;
+                inputData.viewDirectionWS = viewDirWS;
 
-                // #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-                //     inputData.shadowCoord = input.shadowCoord;
-                // #elif defined(MAIN_LIGHT_CALCULATE_SHADOWS)
-                //     inputData.shadowCoord = TransformWorldToShadowCoord(inputData.positionWS);
-                // #else
-                //     inputData.shadowCoord = float4(0, 0, 0, 0);
-                // #endif
+                #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
+                    inputData.shadowCoord = IN.shadowCoord;
+                #elif defined(MAIN_LIGHT_CALCULATE_SHADOWS)
+                    inputData.shadowCoord = TransformWorldToShadowCoord(inputData.positionWS);
+                #else
+                    inputData.shadowCoord = float4(0, 0, 0, 0);
+                #endif
 
                 inputData.fogCoord = 0.0; // we don't apply fog in the guffer pass
 
-                // #ifdef _ADDITIONAL_LIGHTS_VERTEX
-                //     inputData.vertexLighting = input.vertexLighting.xyz;
-                // #else
-                //     inputData.vertexLighting = half3(0, 0, 0);
-                // #endif
+                #ifdef _ADDITIONAL_LIGHTS_VERTEX
+                    inputData.vertexLighting = IN.vertexLighting.xyz;
+                #else
+                    inputData.vertexLighting = half3(0, 0, 0);
+                #endif
 
-                // #if defined(DYNAMICLIGHTMAP_ON)
-                //     inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV, input.vertexSH, inputData.normalWS);
-                // #else
-                //     inputData.bakedGI = SAMPLE_GI(input.staticLightmapUV, input.vertexSH, inputData.normalWS);
-                // #endif
+                #if defined(DYNAMICLIGHTMAP_ON)
+                    inputData.bakedGI = SAMPLE_GI(IN.staticLightmapUV, IN.dynamicLightmapUV, IN.vertexSH, inputData.normalWS);
+                #else
+                    inputData.bakedGI = SAMPLE_GI(IN.staticLightmapUV, IN.vertexSH, inputData.normalWS);
+                #endif
 
                 inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(IN.positionCS);
-                // inputData.shadowMask = SAMPLE_SHADOWMASK(input.staticLightmapUV);
+                inputData.shadowMask = SAMPLE_SHADOWMASK(IN.staticLightmapUV);
             } 
 
             half4 interiorMap(Varyings IN) {
@@ -164,7 +213,6 @@ Shader "Custom/InteriorMapping"
             float3 interiorMapNormal(Varyings IN) {
                 float2 roomUV = frac(IN.uv);
                 float3 pos = float3(roomUV * 2.0 - 1.0, 1);
-                //return half4(pos, 1.0);
                 float3 invDir = 1.0 / IN.viewDirTS;
                 float3 k = abs(invDir) - pos * invDir;
                 float kMin = min(min(k.x, k.y), k.z);
