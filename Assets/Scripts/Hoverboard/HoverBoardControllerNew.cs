@@ -12,7 +12,7 @@ public class HoverBoardControllerNew : MonoBehaviour
     [SerializeField] List<Transform> forcePoints;
     [SerializeField] List<GameObject> fanHolders;
     Rigidbody rb;
-    [SerializeField] float turnSpeed, maxUpForce, forwardForce, speedModeMaxUpForce, speedModeForwardForce, fanMinAngle, fanMaxAngle;
+    [SerializeField] float turnSpeed, maxUpForce, forwardForce, speedModeForwardForce, fanMinAngle, fanMaxAngle;
     [SerializeField] QuaternionVariable tiltRotation;
     [SerializeField] float topSpeed = 50f;
     [SerializeField] float topSpeedModeSpeed = 100f;
@@ -64,7 +64,8 @@ public class HoverBoardControllerNew : MonoBehaviour
 
         for(int i = 0; i < forcePoints.Count; i++)
         {
-            modifiers[i] = -(Mathf.InverseLerp(minHeight, maxHeight, forcePoints[i].position.y) - 0.5f) * 2;
+            modifiers[i] = (minHeight == maxHeight) ? 1 : -(Mathf.InverseLerp(minHeight, maxHeight, forcePoints[i].position.y) - 0.5f) * 2;
+            modifiers[i] /= Mathf.Lerp(10, 100, 1 - Mathf.InverseLerp(0, 90, Vector3.Angle(Vector3.up, transform.up)));
         }
         
         //Check if we're too close to the ground
@@ -90,16 +91,20 @@ public class HoverBoardControllerNew : MonoBehaviour
                 distanceSum += modifiers2[i];
             }
             distanceSum /= modifiers2.Length;
-
+            for(int i = 0; i < hits.Length; i++)
+            {
+                modifiers2[i] /= distanceSum;
+            }
             
-            float downSpeed = Vector3.Dot(-normal, rb.velocity) / Mathf.Lerp(4, 24, Mathf.InverseLerp(minDistance * 0.25f, minDistance, distance));
-
-            Normalize(ref modifiers2, 0.015f, 0.005f);
+            float downSpeed = Vector3.Dot(-normal, rb.velocity) / Mathf.Lerp(4, 24, Mathf.InverseLerp(minDistance * 0.5f, minDistance, distance));
+            Normalize(ref modifiers2, 0.1f, 0.025f);
 
             for(int i = 0; i < forcePoints.Count; i++)
             {
-                rb.AddForceAtPosition(normal * downSpeed * modifiers2[i], forcePoints[i].position, ForceMode.VelocityChange);
+                Debug.Log($"Modifier {i}: {modifiers2[i]}");
+                rb.AddForceAtPosition(transform.up * downSpeed * modifiers2[i], forcePoints[i].position, ForceMode.VelocityChange);
             }
+            Debug.Log("Her");
         }
         else
         {
@@ -118,7 +123,7 @@ public class HoverBoardControllerNew : MonoBehaviour
                     modifier = Mathf.Lerp(1, maxUpForce / rb.mass / Physics.gravity.magnitude, 1 - Mathf.InverseLerp(minDistance, targetDistance, hits[i].distance));
                 forces[i] = rb.mass * Physics.gravity.magnitude / forcePoints.Count * modifier;
             }
-            Normalize(ref forces, 15f, 5f);
+            Normalize(ref forces, 25f, 5f);
             for(int i = 0; i < forcePoints.Count; i++)
             {
                 rb.AddForceAtPosition(transform.up * forces[i], forcePoints[i].position);
@@ -132,14 +137,14 @@ public class HoverBoardControllerNew : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 100, notPlayerLayers))
         {
             float actualTopSpeed = speedMode ? topSpeedModeSpeed : topSpeed;
-            float coef = Mathf.Max(1 - Mathf.InverseLerp(actualTopSpeed * 0.8f, actualTopSpeed, rb.velocity.magnitude), 0.2f);
+            float coef = 1 - Mathf.InverseLerp(actualTopSpeed * 0.8f, actualTopSpeed, Vector3.Project(rb.velocity, transform.forward).magnitude);
 
             Vector3 projectionNormal = hit.distance < 3f ? hit.normal : Vector3.up;
             Vector3 targetDirection = Vector3.ProjectOnPlane(transform.forward, projectionNormal);
             
             if (speedMode) rb.AddForce(targetDirection * speedModeForwardForce * coef);
             else if (accelerate) rb.AddForce(targetDirection * forwardForce * coef);
-            else if (brake) rb.AddForce(targetDirection * forwardForce * -1 * coef);
+            else if (brake) rb.AddForce(targetDirection * forwardForce * -1);
             sounder.speed = Mathf.InverseLerp(0, topSpeed, rb.velocity.magnitude);
         }
     }
