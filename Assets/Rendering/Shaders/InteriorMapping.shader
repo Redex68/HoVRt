@@ -171,7 +171,7 @@ Shader "Custom/InteriorMapping"
                 pos += kMin * IN.viewDirTS;
                 pos = abs(pos);
                 bool3 mask = pos.xyz >= max(pos.yzx, pos.zxy);
-                float3 normalTS = mask * sign(IN.viewDirTS);
+                float3 normalTS = mask * -sign(IN.viewDirTS);
                 float3 bitangent = IN.tangentWS.w * cross(IN.normalWS.xyz, IN.tangentWS.xyz);
                 float3 normalWS = TransformTangentToWorld(normalTS, half3x3(IN.tangentWS.xyz, bitangent.xyz, IN.normalWS.xyz));
                 return normalWS;
