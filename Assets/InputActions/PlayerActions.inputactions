@@ -132,6 +132,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Menu",
+            "id": "ce31e949-6d63-46b5-b39d-83761a326a9f",
+            "actions": [
+                {
+                    "name": "Open escape menu",
+                    "type": "Button",
+                    "id": "efe0c988-876a-449d-b2ab-8779ddab8b63",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ecb0aa71-5dbc-4407-8472-96a63eb5936e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open escape menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

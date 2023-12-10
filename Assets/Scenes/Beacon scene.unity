@@ -2694,6 +2694,8 @@ GameObject:
   - component: {fileID: 1371733710}
   - component: {fileID: 1371733709}
   - component: {fileID: 1371733708}
+  - component: {fileID: 1371733712}
+  - component: {fileID: 1371733711}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2854,6 +2856,82 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 237948926}
+--- !u!114 &1371733711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371733703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: cde96425a353eb340ac3530f1335f01e,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79c38dc8-1071-449f-8c5d-327d17fea711
+    m_ActionName: Hoverboard/Brake[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9654108b-2c89-4093-8031-2033c93a11f7
+    m_ActionName: Hoverboard/Accelerate[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65e66fff-5b2d-4ca1-8398-27231325fb36
+    m_ActionName: Hoverboard/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e5688353-4a5a-4a8d-b397-bab604c98792
+    m_ActionName: Hoverboard/HighSpeed[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1371733712}
+        m_TargetAssemblyTypeName: EscapeMenu, Assembly-CSharp
+        m_MethodName: OpenEscapeMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: efe0c988-876a-449d-b2ab-8779ddab8b63
+    m_ActionName: Menu/Open escape menu[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Hoverboard
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1371733712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371733703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffe7652b73c8ec4787b4ac42e1dce9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escapeMenu: {fileID: 0}
 --- !u!1001 &1416207346
 PrefabInstance:
   m_ObjectHideFlags: 0
