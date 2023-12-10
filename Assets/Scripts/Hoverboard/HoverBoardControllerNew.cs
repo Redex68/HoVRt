@@ -14,7 +14,8 @@ public class HoverBoardControllerNew : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float turnSpeed, maxUpForce, forwardForce, speedModeMaxUpForce, speedModeForwardForce, fanMinAngle, fanMaxAngle;
     [SerializeField] QuaternionVariable tiltRotation;
-    [SerializeField] float topSpeed = 100f;
+    [SerializeField] float topSpeed = 50f;
+    [SerializeField] float topSpeedModeSpeed = 100f;
     [SerializeField] float minDistance = 0.5f;
     [SerializeField] float targetDistance = 3.0f;
     [SerializeField] float maxDistance = 6.0f;
@@ -63,7 +64,7 @@ public class HoverBoardControllerNew : MonoBehaviour
 
         for(int i = 0; i < forcePoints.Count; i++)
         {
-            modifiers[i] = -(Mathf.InverseLerp(minHeight, maxHeight, forcePoints[i].position.y) - 0.5f) * 2 / Mathf.Lerp(40, 100, 1 - Mathf.InverseLerp(0, 90, Vector3.Angle(Vector3.up, transform.up)));
+            modifiers[i] = -(Mathf.InverseLerp(minHeight, maxHeight, forcePoints[i].position.y) - 0.5f) * 2;
         }
         
         //Check if we're too close to the ground
@@ -102,7 +103,7 @@ public class HoverBoardControllerNew : MonoBehaviour
         }
         else
         {
-            float[] forces = new float[hits.Length];
+            float[] forces = new float[forcePoints.Count];
             for(int i = 0; i < forcePoints.Count; i++)
             {
                 float modifier;
@@ -115,7 +116,7 @@ public class HoverBoardControllerNew : MonoBehaviour
                     modifier = 1 - Mathf.InverseLerp(targetDistance, maxDistance, hits[i].distance);
                 else
                     modifier = Mathf.Lerp(1, maxUpForce / rb.mass / Physics.gravity.magnitude, 1 - Mathf.InverseLerp(minDistance, targetDistance, hits[i].distance));
-                forces[i] = rb.mass * Physics.gravity.magnitude / 4 * modifier;
+                forces[i] = rb.mass * Physics.gravity.magnitude / forcePoints.Count * modifier;
             }
             Normalize(ref forces, 15f, 5f);
             for(int i = 0; i < forcePoints.Count; i++)
@@ -128,13 +129,17 @@ public class HoverBoardControllerNew : MonoBehaviour
     private void HandleMotor()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100, notPlayerLayers))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 100, notPlayerLayers))
         {
+            float actualTopSpeed = speedMode ? topSpeedModeSpeed : topSpeed;
+            float coef = Mathf.Max(1 - Mathf.InverseLerp(actualTopSpeed * 0.8f, actualTopSpeed, rb.velocity.magnitude), 0.2f);
+
             Vector3 projectionNormal = hit.distance < 3f ? hit.normal : Vector3.up;
             Vector3 targetDirection = Vector3.ProjectOnPlane(transform.forward, projectionNormal);
-            if (speedMode) rb.AddForce(targetDirection * speedModeForwardForce);
-            else if (accelerate) rb.AddForce(targetDirection * forwardForce);
-            else if (brake) rb.AddForce(targetDirection * forwardForce * -1);
+            
+            if (speedMode) rb.AddForce(targetDirection * speedModeForwardForce * coef);
+            else if (accelerate) rb.AddForce(targetDirection * forwardForce * coef);
+            else if (brake) rb.AddForce(targetDirection * forwardForce * -1 * coef);
             sounder.speed = Mathf.InverseLerp(0, topSpeed, rb.velocity.magnitude);
         }
     }
@@ -209,12 +214,10 @@ public class HoverBoardControllerNew : MonoBehaviour
         Debug.Log("HighSpeedTime");
         if (context.phase == InputActionPhase.Started)
         {
-            rb.maxLinearVelocity = 5000;
             speedMode = true;
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            rb.maxLinearVelocity = topSpeed;
             speedMode = false;
         }
     }
