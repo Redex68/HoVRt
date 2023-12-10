@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Vendor/MediaPipeUnity/Samples/Scenes/Pose Tracking/Pose Tracking.unity
     guid: a4964d5b8866fb3d8bd4c715728200c8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Scene.unity
     guid: cce7c7ee0200ccf4e9a33e58f574b6f4
   - enabled: 1
     path: Assets/Scenes/Beacon scene.unity
     guid: 82e6be8158e7c044c8d5708dd43bd1a8
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ed9e8a3210ddd2d4281bbe19c5ab8612
   m_configObjects: {}
