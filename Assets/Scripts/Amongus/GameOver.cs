@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver: MonoBehaviour
 {
@@ -11,6 +12,6 @@ public class GameOver: MonoBehaviour
     private IEnumerator _DelayedLoad(float time)
     {
         yield return new WaitForSeconds(time);
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Main Scene");
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 }

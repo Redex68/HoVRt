@@ -10,9 +10,9 @@ public enum CalibrationEvent {LEFT, RIGHT, DOWN, FINISHED}
 public class Tilt : MonoBehaviour
 {
     [Tooltip("How long you have to turn tilt the device in a specific direction before the script starts reading the accelerometer data")]
-    [SerializeField] public float ReadDelay {get; private set;} = 1.0f;
+    [SerializeField] public float ReadDelay = 1.0f;
     [Tooltip("How long the script will read the data (longer == better average)")]
-    [SerializeField] public float ReadLength {get; private set;} = 2.0f;
+    [SerializeField] public float ReadLength = 2.0f;
     [SerializeField] GameEvent calibrationEvent;
     [SerializeField] QuaternionVariable tiltRotation;
     [SerializeField] QuaternionVariable calibratedTurn;

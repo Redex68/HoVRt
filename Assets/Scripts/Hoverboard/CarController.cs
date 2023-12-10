@@ -29,7 +29,7 @@ public class AxleInfo
     }
 }
 
-public class HoverboardController : MonoBehaviour
+public class CarController : MonoBehaviour
 {
     [SerializeField] public List<AxleInfo> axleInfos;
     [NonSerialized] public int groundedWheels = 0;

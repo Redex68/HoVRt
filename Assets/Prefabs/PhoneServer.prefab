@@ -61,8 +61,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 790361423001ffe4fbb62c94fed9e255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ReadDelay: 2.5
+  ReadLength: 4
   calibrationEvent: {fileID: 11400000, guid: 917c460f7bf741143af1923bb0670ea8, type: 2}
-  tiltRotation: {fileID: 11400000, guid: 84c0ff1549eefe04f96b6167ce33e6ed, type: 2}
+  tiltRotation: {fileID: 11400000, guid: 98f66f640671d004cb29422d140c3fd6, type: 2}
+  calibratedTurn: {fileID: 11400000, guid: 6436a7a06713ff54b87078807b66c513, type: 2}
 --- !u!114 &6827293904357386364
 MonoBehaviour:
   m_ObjectHideFlags: 0
