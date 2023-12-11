@@ -13,7 +13,7 @@ public class PlayerSoundTest : MonoBehaviour
 
     [Range(0.0f, 10.0f)]
     public float volume = 0.1f;
-    
+
     private FMODUnity.StudioEventEmitter emitter;
 
     void Awake()
