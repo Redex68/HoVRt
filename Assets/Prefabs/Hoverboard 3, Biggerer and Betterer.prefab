@@ -743,7 +743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3446601355680660710}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15251783, y: 0.25555977, z: -0.04086488, w: 0.9538121}
+  m_LocalRotation: {x: 0.1525178, y: 0.2555598, z: -0.040864877, w: 0.9538121}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -845,7 +845,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4087667098819452189}
   serializedVersion: 8
-  lengthInSec: 10
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -911,7 +911,7 @@ ParticleSystem:
       m_PostInfinity: 2
       m_RotationOrder: 4
   moveWithTransform: 1
-  moveWithCustomTransform: {fileID: 0}
+  moveWithCustomTransform: {fileID: 1885372777006417571}
   scalingMode: 1
   randomSeed: 0
   InitialModule:
@@ -1027,7 +1027,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9056604, g: 0.7513501, b: 0.37935206, a: 1}
+      maxColor: {r: 0.9150943, g: 0.70253015, b: 0.18474545, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1090,7 +1090,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 0.3
       minScalar: 0.1
       maxCurve:
@@ -1125,7 +1125,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 2
       minScalar: 0
       maxCurve:
@@ -1160,7 +1160,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 2
       minScalar: 0
       maxCurve:
@@ -1415,7 +1415,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 45
+    angle: 60
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -1673,7 +1673,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5592,8 +5592,8 @@ Transform:
   m_GameObject: {fileID: 4614736720951270015}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.7509999}
-  m_LocalScale: {x: 1, y: 0.5000021, z: 1.7000016}
+  m_LocalPosition: {x: 0, y: 0, z: -1.3447}
+  m_LocalScale: {x: 1, y: 0.5000021, z: 2.8875887}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1885372777006417571}
@@ -5681,7 +5681,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48fe6934b25f2fc469f57ebce94ee6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: {fileID: 8886875800778935905}
+  board: {fileID: 1444437239165828469}
+  dustClouds: {fileID: 8886875800778935905}
+  sandParticles: {fileID: 426099575137086811}
 --- !u!1 &4956846781763652356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6217,7 +6219,6 @@ MonoBehaviour:
   turnSpeed: 50
   maxUpForce: 10000
   forwardForce: 1000
-  speedModeMaxUpForce: 20000
   speedModeForwardForce: 5000
   fanMinAngle: 0
   fanMaxAngle: 30
@@ -7407,7 +7408,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 45
+    angle: 70
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
