@@ -296,12 +296,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &183012882 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1885372777006417571, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2118702684}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &223265669
 GameObject:
   m_ObjectHideFlags: 0
@@ -25214,66 +25208,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: lengthInSec
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: ShapeModule.angle
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: moveWithTransform
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: moveWithCustomTransform
-      value: 
-      objectReference: {fileID: 183012882}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.18474545
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.70253015
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.9150943
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: InitialModule.startSize.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: InitialModule.startSizeY.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: InitialModule.startSizeZ.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 426099575137086811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1444437239165828469, guid: c0c0cedd711d41f41b8b6c6978b95af2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25324,21 +25258,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5460282979938874457, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.8875887
-      objectReference: {fileID: 0}
-    - target: {fileID: 5460282979938874457, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.3447
-      objectReference: {fileID: 0}
-    - target: {fileID: 5694859872109610875, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: board
-      value: 
-      objectReference: {fileID: 592853846}
     - target: {fileID: 5774139012258684811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -25353,16 +25272,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hoverboard 3, Biggerer and Betterer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8886875800778935905, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: ShapeModule.angle
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 8886875800778935905, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: moveWithTransform
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
