@@ -743,7 +743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3446601355680660710}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1525178, y: 0.2555598, z: -0.040864877, w: 0.9538121}
+  m_LocalRotation: {x: 0.1525178, y: 0.2555598, z: -0.04086488, w: 0.9538121}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -973,7 +973,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 20
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1025,9 +1025,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9150943, g: 0.70253015, b: 0.18474545, a: 1}
+      minMaxState: 2
+      minColor: {r: 0.7735849, g: 0.5930122, b: 0.14158058, a: 1}
+      maxColor: {r: 0.6132076, g: 0.43753088, b: 0.008098936, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1091,7 +1091,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.22
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -1620,7 +1620,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 750
+      scalar: 800
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7020,7 +7020,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9339623, g: 0.7645487, b: 0.35596296, a: 0.35686275}
+      maxColor: {r: 0.9339623, g: 0.7645487, b: 0.35596296, a: 0.5254902}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -7613,7 +7613,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2
