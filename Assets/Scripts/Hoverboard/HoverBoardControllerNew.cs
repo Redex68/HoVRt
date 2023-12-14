@@ -101,10 +101,8 @@ public class HoverBoardControllerNew : MonoBehaviour
 
             for(int i = 0; i < forcePoints.Count; i++)
             {
-                Debug.Log($"Modifier {i}: {modifiers2[i]}");
                 rb.AddForceAtPosition(transform.up * downSpeed * modifiers2[i], forcePoints[i].position, ForceMode.VelocityChange);
             }
-            Debug.Log("Her");
         }
         else
         {
@@ -194,12 +192,12 @@ public class HoverBoardControllerNew : MonoBehaviour
 
     public void JumpButton(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started) jumpHeld = true;
+        /*if (context.phase == InputActionPhase.Started) jumpHeld = true;
         if (context.phase == InputActionPhase.Canceled)
         {
             rb.AddForce(Vector3.up * 100000);
             jumpHeld = true;
-        }
+        }*/
     }
 
     public void AccelerateButton(InputAction.CallbackContext context)
