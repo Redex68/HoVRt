@@ -192,12 +192,12 @@ public class HoverBoardControllerNew : MonoBehaviour
 
     public void JumpButton(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started) jumpHeld = true;
+        /*if (context.phase == InputActionPhase.Started) jumpHeld = true;
         if (context.phase == InputActionPhase.Canceled)
         {
             rb.AddForce(Vector3.up * 100000);
             jumpHeld = true;
-        }
+        }*/
     }
 
     public void AccelerateButton(InputAction.CallbackContext context)
