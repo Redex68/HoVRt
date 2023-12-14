@@ -544,6 +544,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 178999095643148214, guid: b19a26f9517e9c642b35307e5d4f626d,
+        type: 3}
+      propertyPath: overheadOffset
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 677701719849263839, guid: b19a26f9517e9c642b35307e5d4f626d,
+        type: 3}
+      propertyPath: overheadOffset
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321374267187514023, guid: b19a26f9517e9c642b35307e5d4f626d,
+        type: 3}
+      propertyPath: overheadOffset
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680704458369802813, guid: b19a26f9517e9c642b35307e5d4f626d,
+        type: 3}
+      propertyPath: overheadOffset
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 7936722019383890283, guid: b19a26f9517e9c642b35307e5d4f626d,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   stepDistance: 0.9
-  overheadOffset: 1
+  overheadOffset: 0.7
   stepHeight: 0.4
   lerpTarget: 1.1
   oppositeLeg: {fileID: 4321374267187514023}
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 9
   stepDistance: 0.9
-  overheadOffset: 1
+  overheadOffset: 0.75
   stepHeight: 0.4
   lerpTarget: 1
   oppositeLeg: {fileID: 677701719849263839}
@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   stepDistance: 0.9
-  overheadOffset: 1
+  overheadOffset: 0.75
   stepHeight: 0.4
   lerpTarget: 1.1
   oppositeLeg: {fileID: 178999095643148214}
@@ -1531,7 +1531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   stepDistance: 0.9
-  overheadOffset: 1
+  overheadOffset: 0.7
   stepHeight: 0.4
   lerpTarget: 1.1
   oppositeLeg: {fileID: 6680704458369802813}
