@@ -101,10 +101,8 @@ public class HoverBoardControllerNew : MonoBehaviour
 
             for(int i = 0; i < forcePoints.Count; i++)
             {
-                Debug.Log($"Modifier {i}: {modifiers2[i]}");
                 rb.AddForceAtPosition(transform.up * downSpeed * modifiers2[i], forcePoints[i].position, ForceMode.VelocityChange);
             }
-            Debug.Log("Her");
         }
         else
         {
