@@ -5,6 +5,7 @@ using UnityEngine;
 public class SandBlowing : MonoBehaviour
 {
     public Transform board;
+    public LayerMask sandTerrain;
     public ParticleSystem dustClouds;
     public ParticleSystem sandParticles;
 
@@ -14,9 +15,7 @@ public class SandBlowing : MonoBehaviour
         RaycastHit hit;
         Vector3 vel = board.GetComponent<Rigidbody>().velocity;
         vel.y = 0;
-        float displaceDist = Mathf.Clamp(vel.magnitude * 0.5f, 0, 15);
-        Debug.Log(displaceDist);
-        if (Physics.Raycast(board.position + vel.normalized * displaceDist, Vector3.down, out hit, 50, LayerMask.GetMask("GravRoad")))
+        if (Physics.Raycast(board.position, Vector3.down, out hit, 50, sandTerrain))
         {
             dustClouds.transform.position = hit.point;
             sandParticles.transform.position = hit.point;

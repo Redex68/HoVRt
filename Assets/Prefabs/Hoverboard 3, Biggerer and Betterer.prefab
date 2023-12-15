@@ -5682,6 +5682,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   board: {fileID: 1444437239165828469}
+  sandTerrain:
+    serializedVersion: 2
+    m_Bits: 2147483648
   dustClouds: {fileID: 8886875800778935905}
   sandParticles: {fileID: 426099575137086811}
 --- !u!1 &4956846781763652356
