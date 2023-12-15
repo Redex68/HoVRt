@@ -982,6 +982,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5200539207637205525, guid: 3e1fa503f61c9bd47935f9d9e58a3393,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200539207637205525, guid: 3e1fa503f61c9bd47935f9d9e58a3393,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200539207637205525, guid: 3e1fa503f61c9bd47935f9d9e58a3393,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200539207637205525, guid: 3e1fa503f61c9bd47935f9d9e58a3393,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7076061711377873771, guid: 3e1fa503f61c9bd47935f9d9e58a3393,
         type: 3}
       propertyPath: m_Name

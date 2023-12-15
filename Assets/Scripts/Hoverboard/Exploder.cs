@@ -13,27 +13,28 @@ public class Exploder : MonoBehaviour
 
     private Rigidbody rb;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    [SerializeField]
+    public FMODUnity.EventReference soundEvent;
 
     void OnCollisionEnter(Collision collision)
     {
-        if((thingsThatExplodeMe.value & (1 << collision.gameObject.layer)) != 0 && rb.velocity.magnitude > minExplodeSpeed)
+        if ((thingsThatExplodeMe.value & (1 << collision.gameObject.layer)) != 0 && rb.velocity.magnitude > minExplodeSpeed)
             Explode();
-        else if(((ground.value & (1 << collision.gameObject.layer)) != 0) && Vector3.Dot(transform.up, Vector3.up) < 0)
+        else if (((ground.value & (1 << collision.gameObject.layer)) != 0) && Vector3.Dot(transform.up, Vector3.up) < 0)
             Explode();
     }
 
     private void Explode()
     {
+
+        FMODUnity.RuntimeManager.PlayOneShot(soundEvent, transform.position);
+
         explosion.transform.SetParent(null, true);
         cam.transform.SetParent(null, true);
         explosion.SetActive(true);
 
         gameOver.SimpleRaise();
-        
+
         Destroy(explosion, 5.0f);
         gameObject.SetActive(false);
     }
