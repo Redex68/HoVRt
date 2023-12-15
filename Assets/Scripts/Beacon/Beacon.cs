@@ -9,8 +9,17 @@ public class Beacon : MonoBehaviour
     [SerializeField] GameEvent checkpointPassed;
     [SerializeField] List<GameObject> particleSystems;
 
+    private FMODUnity.StudioEventEmitter emitter;
     private bool passed = false;
 
+    [Range(0.0f, 10.0f)]
+    public float volume = 0.4f;
+
+    void Awake()
+    {
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.EventInstance.setVolume(volume);
+    }
     void Start()
     {
         checkpointAdded.Raise(this, null);
@@ -18,7 +27,7 @@ public class Beacon : MonoBehaviour
 
     void OnTriggerEnter()
     {
-        if(!passed)
+        if (!passed)
         {
             passed = true;
             checkpointPassed.SimpleRaise();
@@ -28,7 +37,9 @@ public class Beacon : MonoBehaviour
 
     private void Passed()
     {
-        foreach(GameObject particleSystem in particleSystems)
+        emitter.SetParameter("Activate", 0.0f);
+        emitter.EventInstance.setVolume(volume);
+        foreach (GameObject particleSystem in particleSystems)
         {
             particleSystem.transform.parent = null;
             particleSystem.transform.localScale = Vector3.one;
@@ -38,3 +49,8 @@ public class Beacon : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
+
+
+
+

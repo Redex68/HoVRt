@@ -4925,6 +4925,7 @@ GameObject:
   - component: {fileID: 4166939762363755353}
   - component: {fileID: 1098056792484372877}
   - component: {fileID: 7822262599263563729}
+  - component: {fileID: 1080788727263559641}
   m_Layer: 1
   m_Name: Beacon
   m_TagString: Untagged
@@ -4989,6 +4990,38 @@ MonoBehaviour:
   particleSystems:
   - {fileID: 6813502039076756033}
   - {fileID: 7931764565407391055}
+  volume: 0.4
+--- !u!114 &1080788727263559641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021153150776357911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1832018053
+      Data2: 1259584590
+      Data3: -215345757
+      Data4: -1454346843
+    Path: event:/Beacon
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &7931764565407391055
 GameObject:
   m_ObjectHideFlags: 0
