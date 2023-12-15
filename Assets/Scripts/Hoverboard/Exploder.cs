@@ -9,10 +9,18 @@ public class Exploder : MonoBehaviour
     [SerializeField] LayerMask ground;
     [SerializeField] GameObject cam;
     [SerializeField] GameEvent gameOver;
+    [SerializeField] float minExplodeSpeed;
+
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void OnCollisionEnter(Collision collision)
     {
-        if((thingsThatExplodeMe.value & (1 << collision.gameObject.layer)) != 0)
+        if((thingsThatExplodeMe.value & (1 << collision.gameObject.layer)) != 0 && rb.velocity.magnitude > minExplodeSpeed)
             Explode();
         else if(((ground.value & (1 << collision.gameObject.layer)) != 0) && Vector3.Dot(transform.up, Vector3.up) < 0)
             Explode();
