@@ -5500,25 +5500,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5694859872109610875, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: sandTerrain.m_Bits
-      value: 2147483648
-      objectReference: {fileID: 0}
-    - target: {fileID: 5774139012258684811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.25536382
-      objectReference: {fileID: 0}
-    - target: {fileID: 5774139012258684811, guid: c0c0cedd711d41f41b8b6c6978b95af2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.040717587
-      objectReference: {fileID: 0}
     - target: {fileID: 5971558708438700016, guid: c0c0cedd711d41f41b8b6c6978b95af2,
         type: 3}
       propertyPath: m_Name
       value: Hoverboard 3, Biggerer and Betterer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327553337987545951, guid: c0c0cedd711d41f41b8b6c6978b95af2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.17947027
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327553337987545951, guid: c0c0cedd711d41f41b8b6c6978b95af2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.2513236
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327553337987545951, guid: c0c0cedd711d41f41b8b6c6978b95af2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.047482423
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882131909752402449, guid: c0c0cedd711d41f41b8b6c6978b95af2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.18564436
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882131909752402449, guid: c0c0cedd711d41f41b8b6c6978b95af2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0030878487
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
