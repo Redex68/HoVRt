@@ -142,7 +142,11 @@ public class HoverBoardControllerNew : MonoBehaviour
             
             if (speedMode) rb.AddForce(targetDirection * speedModeForwardForce * coef);
             else if (accelerate) rb.AddForce(targetDirection * forwardForce * coef);
-            else if (brake) rb.AddForce(targetDirection * forwardForce * -1);
+            else if (brake)
+            {
+                if(rb.velocity.magnitude > 0.1f)
+                    rb.AddForce(-rb.velocity.normalized * forwardForce);
+            }
             sounder.speed = Mathf.InverseLerp(0, topSpeed, rb.velocity.magnitude);
         }
     }
