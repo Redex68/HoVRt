@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0efda23a7838ec43888d74f35c8eec8, type: 3}
   m_Name: MainSceneName
   m_EditorClassIdentifier: 
-  defaultValue: Beacon Scene
+  defaultValue: Main Scene 1
   useDefault: 1
-  value: BeaconScene
+  value: Beacon Scene
