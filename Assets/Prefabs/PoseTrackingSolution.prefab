@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 7119467509929573915}
   - component: {fileID: 5326636479086623903}
   - component: {fileID: 7364368540474703184}
-  - component: {fileID: 5464761413862312684}
-  - component: {fileID: 1889719712754743547}
   - component: {fileID: 3569945990084347518}
   - component: {fileID: 5791279544796547311}
   m_Layer: 0
@@ -23,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5213752746541508543
 Transform:
   m_ObjectHideFlags: 0
@@ -79,15 +77,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8792805566687266381}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4d846393f8d9f20fa64b924b0d95e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultImageSource: 0
   _preferableInferenceMode: 0
-  _assetLoaderType: 2
-  _enableGlog: 1
+  _assetLoaderType: 0
+  _enableGlog: 0
 --- !u!114 &7364368540474703184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,42 +130,6 @@ MonoBehaviour:
   - width: 1920
     height: 1080
     frameRate: 30
---- !u!114 &5464761413862312684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8792805566687266381}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7955705ab46c72b9124bb116a2dca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _availableSources: []
-  _defaultAvailableResolutions:
-  - width: 512
-    height: 512
-    frameRate: 0
-  - width: 640
-    height: 480
-    frameRate: 0
-  - width: 1280
-    height: 720
-    frameRate: 0
---- !u!114 &1889719712754743547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8792805566687266381}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04085488e5fac35599866a2a6fceeda3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _availableSources: []
 --- !u!114 &3569945990084347518
 MonoBehaviour:
   m_ObjectHideFlags: 0
