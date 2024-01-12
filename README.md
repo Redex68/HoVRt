@@ -20,3 +20,6 @@ PC:
 - Superspeed: Q
 - Break: S
 - Turning: Skateboard/Phone Tilt
+
+# Notes
+The mobile app has it's own repository: https://github.com/Redex68/HoVRt-Phone
