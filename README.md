@@ -21,5 +21,8 @@ PC:
 - Break: S
 - Turning: Skateboard/Phone Tilt
 
+# Phone calibration
+The game allows users to calibrate the skateboard tilt axis, meaning that you can orient the phone in whichever way you want when placing it on the skateboard. To calibrate the tilt, there is a "Calibrate" button in the main and escape menu that can be used to calibrate the axes. The tooltips guide the user through the process (when to tilt the skateboard in which direction).
+
 # Notes
 The mobile app has it's own repository: https://github.com/Redex68/HoVRt-Phone
